@@ -1213,10 +1213,13 @@ function showRoutingNotice(suburb,city,distKm){
 // —— BUILD FUNCTIONS ——————————————————————————————————————————————————————————
 function buildCities(f){
   var list=f==='ALL'?CITIES:CITIES.filter(function(c){return c.s===f;});
-  document.getElementById('cities-grid').innerHTML=list.map(function(c){
-    var cityStr=c.n+', '+c.s;
-    return '<div class="cc" onclick="qs(this.getAttribute('data-v'),'Removals')" data-v="'+cityStr+'"><div><h4>'+c.n+'</h4><div class="cc-meta">'+c.s+' &middot; ~'+c.p+'</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>';
+  var grid=document.getElementById('cities-grid');
+  grid.innerHTML=list.map(function(c,i){
+    return '<div class="cc" id="cc'+i+'"><div><h4>'+c.n+'</h4><div class="cc-meta">'+c.s+' · ~'+c.p+'</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>';
   }).join('');
+  list.forEach(function(c,i){
+    document.getElementById('cc'+i).addEventListener('click',function(){qs(c.n+', '+c.s,'Removals');});
+  });
 }
 
 function buildBiz(){
@@ -1250,14 +1253,24 @@ function buildSuburbLinks(){
     'Removalists Darwin':['Darwin, NT','Removals'],
     'Bond Cleaning Darwin':['Darwin, NT','Bond Cleaning'],
   };
-  document.getElementById('suburb-links').onclick=function(e){var a=e.target.closest('.suburb-link');if(a)qs(decodeURIComponent(a.dataset.city),decodeURIComponent(a.dataset.svc));};document.getElementById('suburb-links').innerHTML=Object.entries(SUBURB_LINKS).map(function(entry){
+  var wrap=document.getElementById('suburb-links');
+  wrap.innerHTML=Object.entries(SUBURB_LINKS).map(function(entry){
     var col=entry[0], links=entry[1];
     var target=colMap[col]||['Townsville, QLD','Removals'];
     var city=target[0], svc=target[1];
     return '<div class="suburb-col"><h4>'+col+'</h4>'+links.map(function(l){
-      return '<a class="suburb-link" data-city="'+encodeURIComponent(city)+'" data-svc="'+encodeURIComponent(svc)+'">'">'+l+'</a>';
+      return '<a class="suburb-link">'+l+'</a>';
     }).join('')+'</div>';
   }).join('');
+  wrap.querySelectorAll('.suburb-col').forEach(function(div,i){
+    var entries=Object.entries(SUBURB_LINKS);
+    if(!entries[i]) return;
+    var col=entries[i][0];
+    var target=colMap[col]||['Townsville, QLD','Removals'];
+    div.querySelectorAll('.suburb-link').forEach(function(a){
+      a.addEventListener('click',function(){qs(target[0],target[1]);});
+    });
+  });
 }
 
 function buildCityCBs(){
