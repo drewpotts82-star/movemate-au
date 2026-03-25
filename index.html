@@ -1223,54 +1223,23 @@ function buildCities(f){
 }
 
 function buildBiz(){
-  document.getElementById('biz-grid').innerHTML=BUSINESSES.map(function(b){
+  var grid=document.getElementById('biz-grid');
+  grid.innerHTML=BUSINESSES.map(function(b,i){
     var k=b.type==='Removals'?'r':b.type==='Bond Cleaning'?'c':'s';
     var stars='&#9733;'.repeat(Math.floor(b.stars))+(b.stars%1>=.5?'&frac12;':'');
-    return '<article class="bizcard"><div class="biz-head"><div class="biz-av ba-'+k+'">'+b.init+'</div><span class="btype bt-'+k+'">'+b.type+'</span></div><div class="biz-name">'+b.nm+'</div><div class="biz-loc"><i class="fas fa-map-marker-alt" style="font-size:.65rem;color:var(--blue);"></i> '+b.city+'</div><div class="biz-stars"><span class="s">'+stars+'</span><strong>'+b.stars+'</strong><span style="color:var(--mid);">('+b.rev+' reviews)</span></div><p class="biz-blurb">'+b.bl+'</p><button class="biz-btn" onclick="qs(''+b.city+'',''+b.type+'')">Get a Quote &rarr;</button></article>';
+    return '<article class="bizcard" id="bz'+i+'"><div class="biz-head"><div class="biz-av ba-'+k+'">'+b.init+'</div><span class="btype bt-'+k+'">'+b.type+'</span></div><h4 class="biz-name">'+b.name+'</h4><div class="biz-loc"><i class="fas fa-map-marker-alt"></i>'+b.city+'</div><div class="biz-stars">'+stars+'<span class="biz-rev">('+b.rev+' reviews)</span></div><p class="biz-blurb">'+b.bl+'</p><button class="biz-btn" id="bzb'+i+'">Get a Quote &rarr;</button></article>';
   }).join('');
+  BUSINESSES.forEach(function(b,i){
+    var btn=document.getElementById('bzb'+i);
+    if(btn) btn.addEventListener('click',function(){qs(b.city,b.type);});
+  });
 }
 
 function buildSuburbLinks(){
-  var colMap={
-    'Removalists Townsville':['Townsville, QLD','Removals'],
-    'Removalists Mackay':['Mackay, QLD','Removals'],
-    'Removalists Rockhampton':['Rockhampton, QLD','Removals'],
-    'Removalists Newcastle':['Newcastle, NSW','Removals'],
-    'Bond Cleaning Townsville':['Townsville, QLD','Bond Cleaning'],
-    'Bond Cleaning Geelong':['Geelong, VIC','Bond Cleaning'],
-    'Removalists Geelong':['Geelong, VIC','Removals'],
-    'Storage Townsville':['Townsville, QLD','Storage'],
-    'Removalists Hervey Bay':['Hervey Bay, QLD','Removals'],
-    'Removalists Gladstone':['Gladstone, QLD','Removals'],
-    'Removalists Tamworth':['Tamworth, NSW','Removals'],
-    'Bond Cleaning Tamworth':['Tamworth, NSW','Bond Cleaning'],
-    'Removalists Wagga Wagga':['Wagga Wagga, NSW','Removals'],
-    'Bond Cleaning Wagga Wagga':['Wagga Wagga, NSW','Bond Cleaning'],
-    'Removalists Coffs Harbour':['Coffs Harbour, NSW','Removals'],
-    'Removalists Warrnambool':['Warrnambool, VIC','Removals'],
-    'Removalists Kalgoorlie':['Kalgoorlie, WA','Removals'],
-    'Removalists Albany WA':['Albany, WA','Removals'],
-    'Removalists Darwin':['Darwin, NT','Removals'],
-    'Bond Cleaning Darwin':['Darwin, NT','Bond Cleaning'],
-  };
-  var wrap=document.getElementById('suburb-links');
-  wrap.innerHTML=Object.entries(SUBURB_LINKS).map(function(entry){
-    var col=entry[0], links=entry[1];
-    var target=colMap[col]||['Townsville, QLD','Removals'];
-    var city=target[0], svc=target[1];
-    return '<div class="suburb-col"><h4>'+col+'</h4>'+links.map(function(l){
-      return '<a class="suburb-link">'+l+'</a>';
-    }).join('')+'</div>';
-  }).join('');
-  wrap.querySelectorAll('.suburb-col').forEach(function(div,i){
-    var entries=Object.entries(SUBURB_LINKS);
-    if(!entries[i]) return;
-    var col=entries[i][0];
-    var target=colMap[col]||['Townsville, QLD','Removals'];
-    div.querySelectorAll('.suburb-link').forEach(function(a){
-      a.addEventListener('click',function(){qs(target[0],target[1]);});
-    });
-  });
+  var colMap={'Removalists Townsville':['Townsville, QLD','Removals'],'Removalists Mackay':['Mackay, QLD','Removals'],'Removalists Rockhampton':['Rockhampton, QLD','Removals'],'Removalists Newcastle':['Newcastle, NSW','Removals'],'Bond Cleaning Townsville':['Townsville, QLD','Bond Cleaning'],'Bond Cleaning Geelong':['Geelong, VIC','Bond Cleaning'],'Removalists Geelong':['Geelong, VIC','Removals'],'Storage Townsville':['Townsville, QLD','Storage'],'Removalists Hervey Bay':['Hervey Bay, QLD','Removals'],'Removalists Gladstone':['Gladstone, QLD','Removals'],'Removalists Tamworth':['Tamworth, NSW','Removals'],'Bond Cleaning Tamworth':['Tamworth, NSW','Bond Cleaning'],'Removalists Wagga Wagga':['Wagga Wagga, NSW','Removals'],'Bond Cleaning Wagga Wagga':['Wagga Wagga, NSW','Bond Cleaning'],'Removalists Coffs Harbour':['Coffs Harbour, NSW','Removals'],'Removalists Warrnambool':['Warrnambool, VIC','Removals'],'Removalists Kalgoorlie':['Kalgoorlie, WA','Removals'],'Removalists Albany WA':['Albany, WA','Removals'],'Removalists Darwin':['Darwin, NT','Removals'],'Bond Cleaning Darwin':['Darwin, NT','Bond Cleaning']};
+  var allClicks=[];
+  document.getElementById('suburb-links').innerHTML=Object.entries(SUBURB_LINKS).map(function(e){var col=e[0],links=e[1];var target=colMap[col]||['Townsville, QLD','Removals'];links.forEach(function(l){allClicks.push({city:target[0],svc:target[1]});});return '<div class="suburb-col"><h4>'+col+'</h4>'+links.map(function(l){return '<a class="suburb-link">'+l+'</a>';}).join('')+'</div>';}).join('');
+  document.querySelectorAll('.suburb-link').forEach(function(a,i){if(allClicks[i])a.addEventListener('click',function(){qs(allClicks[i].city,allClicks[i].svc);});});
 }
 
 function buildCityCBs(){
