@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)file:///Users/drewpotts/Downloads/movemate_6.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoveMate — Removalists, Bond Cleaning &amp; Storage | Regional Australia</title>
 <meta name="description" content="Free instant quotes from verified removalists, bond cleaners and storage providers across 55+ regional Australian cities — Townsville, Mackay, Rockhampton, Cairns, Newcastle, Geelong, Bunbury and more. No spam, local pros only.">
@@ -10,15 +10,15 @@
 <link rel="canonical" href="https://movemate.au/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://movemate.au/">
-<meta property="og:title" content="MoveMate — Regional Australia&#39;s Moving Network">
+<meta property="og:title" content="MoveMate — Regional Australia's Moving Network">
 <meta property="og:description" content="Instant quotes from verified removalists, bond cleaners &amp; storage in 22+ regional cities. Free for customers.">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"MoveMate","url":"https://movemate.au","contactPoint":{"@type":"ContactPoint","email":"hello@movemate.au","contactType":"customer support"},"description":"Australia's regional moving network connecting customers with verified removalists, bond cleaners and storage providers across 55+ regional cities."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"MoveMate Removalist Lead Network","provider":{"@type":"Organization","name":"MoveMate","url":"https://movemate.au"},"serviceType":"Removalist and Moving Services Referral","areaServed":[{"@type":"City","name":"Townsville"},{"@type":"City","name":"Mackay"},{"@type":"City","name":"Rockhampton"},{"@type":"City","name":"Cairns"},{"@type":"City","name":"Toowoomba"},{"@type":"City","name":"Newcastle"},{"@type":"City","name":"Geelong"},{"@type":"City","name":"Ballarat"},{"@type":"City","name":"Bendigo"},{"@type":"City","name":"Bunbury"},{"@type":"City","name":"Mandurah"},{"@type":"City","name":"Launceston"}],"offers":{"@type":"Offer","price":"0","priceCurrency":"AUD","description":"Free for customers"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is MoveMate free for customers?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. Customers never pay to request quotes. MoveMate is funded by professional partners who pay a small fee to receive qualified leads."}},{"@type":"Question","name":"How are removalists verified on MoveMate?","acceptedAnswer":{"@type":"Answer","text":"Every partner provides their ABN and proof of public liability insurance. We manually review all applications before they can access customer details."}},{"@type":"Question","name":"Which regional cities does MoveMate cover?","acceptedAnswer":{"@type":"Answer","text":"MoveMate covers 22+ regional cities including Townsville, Mackay, Rockhampton, Cairns, Toowoomba, Bundaberg, Newcastle, Wollongong, Geelong, Ballarat, Bendigo, Bunbury, Mandurah, Launceston and more."}},{"@type":"Question","name":"How quickly will I receive quotes?","acceptedAnswer":{"@type":"Answer","text":"Most customers receive their first quote within 30 to 60 minutes. Partners receive real-time SMS alerts the moment a request is submitted."}}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link href="./index_files/css2" rel="stylesheet">
-<link rel="stylesheet" href="./index_files/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{--ink:#0d1117;--paper:#f5f4f1;--blue:#1a5cf8;--blue-dk:#1248d0;--blue-lt:#edf2ff;--navy:#0a1628;--navy-mid:#0e2040;--sage:#2d6a4f;--sage-lt:#e4f2ea;--teal:#0e7a6e;--teal-lt:#e6f5f3;--cream:#fafaf8;--white:#ffffff;--mid:#666260;--border:#ddd9d2;--text-sub:#9b9791}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -319,14 +319,14 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand" onclick="showView(&#39;main&#39;)">
+    <div class="brand" onclick="showView('main')">
       <div class="brand-icon"><i class="fas fa-route"></i></div>
       <span class="brand-name">Move<span>Mate</span><span class="brand-tld">.au</span></span>
     </div>
     <div class="nav-links">
-      <span class="nav-link" onclick="sid(&#39;cities-sec&#39;)">Cities</span>
-      <span class="nav-link" onclick="sid(&#39;how-sec&#39;)">How It Works</span>
-      <span class="nav-link" onclick="sid(&#39;faq-sec&#39;)">FAQ</span>
+      <span class="nav-link" onclick="sid('cities-sec')">Cities</span>
+      <span class="nav-link" onclick="sid('how-sec')">How It Works</span>
+      <span class="nav-link" onclick="sid('faq-sec')">FAQ</span>
       <button class="nav-cta" id="nav-partner-btn" onclick="handlePartner()">Partner Login</button>
     </div>
   </div>
@@ -352,7 +352,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
         <div class="qcard-title">Get Free Quotes Now</div>
         <div class="sel-wrap">
           <select id="sel-city" onchange="handleCityChange(this)">
-            <option value="" disabled="" selected="">📍 Select your city or town...</option>
+            <option value="" disabled selected>📍 Select your city or town...</option>
 
             <optgroup label="── Queensland ─────────────────">
               <option>Townsville, QLD</option>
@@ -459,7 +459,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
           <input class="form-inp na" id="other-suburb" oninput="handleOtherInput()" placeholder="Type your suburb or town (e.g. Hervey Bay, Gladstone, Wagga Wagga...)" style="width:100%;border-color:var(--blue);">
           <div style="font-size:.7rem;color:var(--mid);margin-top:5px;display:flex;align-items:center;gap:5px;">
             <i class="fas fa-info-circle" style="color:var(--blue);"></i>
-            We'll email your request to <strong><a href="file:///cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="731b161f1f1c331e1c05161e1207165d1206">[email&nbsp;protected]</a></strong> and match you with the nearest available partners.
+            We'll email your request to <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="731b161f1f1c331e1c05161e1207165d1206">[email&#160;protected]</a></strong> and match you with the nearest available partners.
           </div>
         </div>
         <div class="svcs">
@@ -472,7 +472,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
         <div class="svc-panel panel-clean" id="panel-clean">
           <div class="panel-label panel-label-clean"><i class="fas fa-spray-can-sparkles"></i> Cleaning Type</div>
           <select class="panel-sel" id="f-clean-type">
-            <option value="" disabled="" selected="">What type of clean?</option>
+            <option value="" disabled selected>What type of clean?</option>
             <option value="Bond Clean — Yes (End of Lease)">Bond Clean — Yes, end of lease</option>
             <option value="Bond Clean — No (General / Move-in Clean)">Bond Clean — No, general / move-in clean</option>
             <option value="Regular Domestic Clean">Regular domestic clean</option>
@@ -486,9 +486,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
         <div class="svc-panel panel-store" id="panel-store">
           <div class="panel-label panel-label-store"><i class="fas fa-warehouse"></i> Storage Size</div>
           <select class="panel-sel" id="f-storage-size">
-            <option value="" disabled="" selected="">What size unit do you need?</option>
+            <option value="" disabled selected>What size unit do you need?</option>
             <option value="Not sure — quote based on my property size">Not sure — quote based on my property size</option>
-            <option value="Small locker (1m × 1.5m) — boxes &amp; small items">Small locker (1m × 1.5m) — boxes &amp; small items</option>
+            <option value="Small locker (1m × 1.5m) — boxes & small items">Small locker (1m × 1.5m) — boxes &amp; small items</option>
             <option value="Small unit (3m × 3m) — bedroom contents">Small unit (3m × 3m) — bedroom contents</option>
             <option value="Medium unit (3m × 6m) — half a house">Medium unit (3m × 6m) — half a house</option>
             <option value="Large unit (6m × 6m) — full house contents">Large unit (6m × 6m) — full house contents</option>
@@ -503,7 +503,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
         </div>
         <div class="frow">
           <select class="form-inp" id="f-size">
-            <option value="" disabled="" selected="">Property size?</option>
+            <option value="" disabled selected>Property size?</option>
             <option>Studio / 1 Bed</option><option>2 Bedrooms</option>
             <option>3 Bedrooms</option><option>4+ Bedrooms</option>
           </select>
@@ -514,12 +514,12 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
           <input class="form-inp na" id="f-phone" type="tel" placeholder="Mobile number">
         </div>
         <button class="qbtn" onclick="submitQuote()"><i class="fas fa-bolt"></i> Get Instant Quotes — It's Free</button>
-        <div class="qcard-fine"><i class="fas fa-lock" style="color:var(--sage);margin-right:3px;"></i>Verified locals only · No spam · <a href="file:///cdn-cgi/l/email-protection#dbb3beb7b7b49bb6b4adbeb6baafbef5baae" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="f79f929b9b98b79a9881929a968392d99682">[email&nbsp;protected]</span></a></div>
+        <div class="qcard-fine"><i class="fas fa-lock" style="color:var(--sage);margin-right:3px;"></i>Verified locals only · No spam · <a href="/cdn-cgi/l/email-protection#dbb3beb7b7b49bb6b4adbeb6baafbef5baae" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="f79f929b9b98b79a9881929a968392d99682">[email&#160;protected]</span></a></div>
       </div>
       <div id="success-state">
         <div class="succ-icon"><i class="fas fa-check"></i></div>
         <h3 style="font-size:1.3rem;margin-bottom:.5rem;">Quotes on the way!</h3>
-        <p style="font-size:.87rem;color:var(--mid);line-height:1.65;margin-bottom:1.25rem;">We've alerted verified providers in <strong id="city-confirm"></strong>. Expect SMS quotes within the hour.<br>Questions? <a href="file:///cdn-cgi/l/email-protection#bbd3ded7d7d4fbd6d4cdded6dacfde95dace" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="9bf3fef7f7f4dbf6f4edfef6faeffeb5faee">[email&nbsp;protected]</span></a></p>
+        <p style="font-size:.87rem;color:var(--mid);line-height:1.65;margin-bottom:1.25rem;">We've alerted verified providers in <strong id="city-confirm"></strong>. Expect SMS quotes within the hour.<br>Questions? <a href="/cdn-cgi/l/email-protection#bbd3ded7d7d4fbd6d4cdded6dacfde95dace" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="9bf3fef7f7f4dbf6f4edfef6faeffeb5faee">[email&#160;protected]</span></a></p>
         <button class="qbtn" onclick="resetForm()"><i class="fas fa-plus"></i> New Request</button>
       </div>
     </div>
@@ -549,7 +549,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="trust-item"><i class="fas fa-shield-halved"></i> Public Liability Checked</div>
     <div class="trust-item"><i class="fas fa-star"></i> Real Customer Reviews</div>
     <div class="trust-item"><i class="fas fa-ban"></i> Zero Spam Guarantee</div>
-    <div class="trust-item"><i class="fas fa-envelope"></i> <a href="file:///cdn-cgi/l/email-protection#e58d8089898aa5888a938088849180cb8490" style="color:inherit;"><span class="__cf_email__" data-cfemail="d3bbb6bfbfbc93bebca5b6beb2a7b6fdb2a6">[email&nbsp;protected]</span></a></div>
+    <div class="trust-item"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#e58d8089898aa5888a938088849180cb8490" style="color:inherit;"><span class="__cf_email__" data-cfemail="d3bbb6bfbfbc93bebca5b6beb2a7b6fdb2a6">[email&#160;protected]</span></a></div>
   </div>
 </div>
 
@@ -578,18 +578,18 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       </div>
       <div class="seo-city-block">
         <h4>Bond Cleaning &amp; Storage — Geelong to Bunbury</h4>
-        <p>End-of-lease bond cleaning and self-storage across Victoria, Western Australia and beyond. Serving Geelong, Ballarat, Bendigo, Bunbury and Mandurah with agent-approved cleaners and month-to-month storage. <a href="file:///cdn-cgi/l/email-protection#49212c2525260924263f2c24283d2c67283c">Partner enquiries: <span class="__cf_email__" data-cfemail="89e1ece5e5e6c9e4e6ffece4e8fdeca7e8fc">[email&nbsp;protected]</span></a></p>
+        <p>End-of-lease bond cleaning and self-storage across Victoria, Western Australia and beyond. Serving Geelong, Ballarat, Bendigo, Bunbury and Mandurah with agent-approved cleaners and month-to-month storage. <a href="/cdn-cgi/l/email-protection#49212c2525260924263f2c24283d2c67283c">Partner enquiries: <span class="__cf_email__" data-cfemail="89e1ece5e5e6c9e4e6ffece4e8fdeca7e8fc">[email&#160;protected]</span></a></p>
       </div>
     </div>
     <div class="state-tabs">
-      <button class="stab on" onclick="filterState(&#39;ALL&#39;,this)">All States</button>
-      <button class="stab" onclick="filterState(&#39;QLD&#39;,this)">QLD</button>
-      <button class="stab" onclick="filterState(&#39;NSW&#39;,this)">NSW</button>
-      <button class="stab" onclick="filterState(&#39;VIC&#39;,this)">VIC</button>
-      <button class="stab" onclick="filterState(&#39;WA&#39;,this)">WA</button>
-      <button class="stab" onclick="filterState(&#39;SA&#39;,this)">SA</button>
-      <button class="stab" onclick="filterState(&#39;TAS&#39;,this)">TAS</button>
-      <button class="stab" onclick="filterState(&#39;NT&#39;,this)">NT</button>
+      <button class="stab on" onclick="filterState('ALL',this)">All States</button>
+      <button class="stab" onclick="filterState('QLD',this)">QLD</button>
+      <button class="stab" onclick="filterState('NSW',this)">NSW</button>
+      <button class="stab" onclick="filterState('VIC',this)">VIC</button>
+      <button class="stab" onclick="filterState('WA',this)">WA</button>
+      <button class="stab" onclick="filterState('SA',this)">SA</button>
+      <button class="stab" onclick="filterState('TAS',this)">TAS</button>
+      <button class="stab" onclick="filterState('NT',this)">NT</button>
     </div>
     <div class="cgrid" id="cities-grid"></div>
   </div>
@@ -617,7 +617,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="p-feat"><i class="fas fa-check-circle"></i> No Lock-In Contract</div>
     </div>
     <button class="p-btn" onclick="handlePartner()"><i class="fas fa-handshake"></i> Apply as a Partner</button>
-    <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:1rem;margin-bottom:0;">Questions? <a href="file:///cdn-cgi/l/email-protection#8ce4e9e0e0e3cce1e3fae9e1edf8e9a2edf9" style="color:rgba(255,255,255,.7);"><span class="__cf_email__" data-cfemail="c1a9a4adadae81acaeb7a4aca0b5a4efa0b4">[email&nbsp;protected]</span></a></p>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:1rem;margin-bottom:0;">Questions? <a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3cce1e3fae9e1edf8e9a2edf9" style="color:rgba(255,255,255,.7);"><span class="__cf_email__" data-cfemail="c1a9a4adadae81acaeb7a4aca0b5a4efa0b4">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -663,7 +663,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     </div>
     <!-- Extended coverage note — targets "other" towns for SEO -->
     <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:var(--blue-lt);border-radius:12px;border-left:3px solid var(--blue);font-size:.875rem;color:var(--mid);line-height:1.7;">
-      <strong style="color:var(--ink);">Don't see your town?</strong> MoveMate also handles enquiries from smaller regional and rural towns not listed above — including Hervey Bay, Gladstone, Mildura, Tamworth, Wagga Wagga, Warrnambool, Kalgoorlie, Whyalla, Townsville surrounds, Cairns hinterland and more. Select <em>"Other"</em> in the quote form and describe your location. We'll email your request to <a href="file:///cdn-cgi/l/email-protection#a5cdc0c9c9cae5c8cad3c0c8c4d1c08bc4d0" style="color:var(--blue);font-weight:600;"><span class="__cf_email__" data-cfemail="f39b969f9f9cb39e9c85969e928796dd9286">[email&nbsp;protected]</span></a> and match you with the nearest verified partner.
+      <strong style="color:var(--ink);">Don't see your town?</strong> MoveMate also handles enquiries from smaller regional and rural towns not listed above — including Hervey Bay, Gladstone, Mildura, Tamworth, Wagga Wagga, Warrnambool, Kalgoorlie, Whyalla, Townsville surrounds, Cairns hinterland and more. Select <em>"Other"</em> in the quote form and describe your location. We'll email your request to <a href="/cdn-cgi/l/email-protection#a5cdc0c9c9cae5c8cad3c0c8c4d1c08bc4d0" style="color:var(--blue);font-weight:600;"><span class="__cf_email__" data-cfemail="f39b969f9f9cb39e9c85969e928796dd9286">[email&#160;protected]</span></a> and match you with the nearest verified partner.
     </div>
   </div>
 </section>
@@ -676,9 +676,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="faq-list">
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is MoveMate free for customers? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes, 100% free. You never pay to receive quotes. MoveMate is funded by professional partners who pay a small fee to receive qualified leads from genuine customers in their area.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How are removalists and cleaners verified? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Every partner submits their ABN and current certificate of public liability insurance before being approved. We manually review all applications — only legitimate, locally operating businesses can access your details.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Which cities does MoveMate cover? <i class="fas fa-chevron-down"></i></div><div class="faq-a">We cover 22+ regional cities including Townsville, Cairns, Mackay, Rockhampton, Toowoomba, Bundaberg (QLD), Newcastle, Wollongong, Central Coast, Albury–Wodonga (NSW), Geelong, Ballarat, Bendigo, Shepparton, Mildura (VIC), Bunbury, Mandurah, Geraldton (WA), Mount Gambier (SA), Launceston, Devonport, Burnie (TAS), Alice Springs, Darwin, Katherine (NT) and 30+ more regional towns. Email <a href="file:///cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2048454c4c4f604d4f56454d4154450e4155">[email&nbsp;protected]</a> to request your area.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Which cities does MoveMate cover? <i class="fas fa-chevron-down"></i></div><div class="faq-a">We cover 22+ regional cities including Townsville, Cairns, Mackay, Rockhampton, Toowoomba, Bundaberg (QLD), Newcastle, Wollongong, Central Coast, Albury–Wodonga (NSW), Geelong, Ballarat, Bendigo, Shepparton, Mildura (VIC), Bunbury, Mandurah, Geraldton (WA), Mount Gambier (SA), Launceston, Devonport, Burnie (TAS), Alice Springs, Darwin, Katherine (NT) and 30+ more regional towns. Email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2048454c4c4f604d4f56454d4154450e4155">[email&#160;protected]</a> to request your area.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How fast will I receive quotes? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Most customers receive their first quote within 30–60 minutes. During business hours it's often within minutes. All partner businesses receive a real-time SMS alert the moment your request is submitted.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What does it cost to be a partner business? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Partners start with 2 free leads. After that, leads are purchased in bundles from $10 per lead. We also offer volume packs and a flat-rate Gold subscription for unlimited leads in your service area. No contracts, cancel any time. Email <a href="file:///cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e088858c8c8fa08d8f96858d819485ce8195">[email&nbsp;protected]</a> to learn more.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What does it cost to be a partner business? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Partners start with 2 free leads. After that, leads are purchased in bundles from $10 per lead. We also offer volume packs and a flat-rate Gold subscription for unlimited leads in your service area. No contracts, cancel any time. Email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e088858c8c8fa08d8f96858d819485ce8195">[email&#160;protected]</a> to learn more.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can I request quotes for multiple services at once? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. Select Removals, Bond Cleaning and Storage together. Each request goes to the relevant specialist types in your city — you'll receive separate quotes for each service.</div></div>
     </div>
   </div>
@@ -689,52 +689,52 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   <div class="ft-inner">
     <div class="ft-top">
       <div class="ft-brand">
-        <div class="brand" onclick="showView(&#39;main&#39;)">
+        <div class="brand" onclick="showView('main')">
           <div class="brand-icon"><i class="fas fa-route"></i></div>
           <span class="brand-name">Move<span>Mate</span><span class="brand-tld">.au</span></span>
         </div>
         <p>Australia's regional moving network. Verified removalists, bond cleaners and storage providers across 23+ cities — all states and territories.</p>
-        <div class="ft-email"><i class="fas fa-envelope"></i><a href="file:///cdn-cgi/l/email-protection#137b767f7f7c537e7c65767e7267763d7266"><span class="__cf_email__" data-cfemail="e088858c8c8fa08d8f96858d819485ce8195">[email&nbsp;protected]</span></a></div>
+        <div class="ft-email"><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#137b767f7f7c537e7c65767e7267763d7266"><span class="__cf_email__" data-cfemail="e088858c8c8fa08d8f96858d819485ce8195">[email&#160;protected]</span></a></div>
       </div>
       <div class="ft-col">
         <h5>QLD Removalists</h5>
-        <a class="ft-link" onclick="qs(&#39;Townsville, QLD&#39;,&#39;Removals&#39;)">Removalists Townsville</a>
-        <a class="ft-link" onclick="qs(&#39;Cairns, QLD&#39;,&#39;Removals&#39;)">Removalists Cairns</a>
-        <a class="ft-link" onclick="qs(&#39;Mackay, QLD&#39;,&#39;Removals&#39;)">Removalists Mackay</a>
-        <a class="ft-link" onclick="qs(&#39;Rockhampton, QLD&#39;,&#39;Removals&#39;)">Removalists Rockhampton</a>
-        <a class="ft-link" onclick="qs(&#39;Toowoomba, QLD&#39;,&#39;Removals&#39;)">Removalists Toowoomba</a>
-        <a class="ft-link" onclick="qs(&#39;Bundaberg, QLD&#39;,&#39;Removals&#39;)">Removalists Bundaberg</a>
+        <a class="ft-link" onclick="qs('Townsville, QLD','Removals')">Removalists Townsville</a>
+        <a class="ft-link" onclick="qs('Cairns, QLD','Removals')">Removalists Cairns</a>
+        <a class="ft-link" onclick="qs('Mackay, QLD','Removals')">Removalists Mackay</a>
+        <a class="ft-link" onclick="qs('Rockhampton, QLD','Removals')">Removalists Rockhampton</a>
+        <a class="ft-link" onclick="qs('Toowoomba, QLD','Removals')">Removalists Toowoomba</a>
+        <a class="ft-link" onclick="qs('Bundaberg, QLD','Removals')">Removalists Bundaberg</a>
       </div>
       <div class="ft-col">
         <h5>NSW / VIC</h5>
-        <a class="ft-link" onclick="qs(&#39;Newcastle, NSW&#39;,&#39;Removals&#39;)">Removalists Newcastle</a>
-        <a class="ft-link" onclick="qs(&#39;Wollongong, NSW&#39;,&#39;Removals&#39;)">Removalists Wollongong</a>
-        <a class="ft-link" onclick="qs(&#39;Geelong, VIC&#39;,&#39;Removals&#39;)">Removalists Geelong</a>
-        <a class="ft-link" onclick="qs(&#39;Ballarat, VIC&#39;,&#39;Bond Cleaning&#39;)">Bond Cleaning Ballarat</a>
-        <a class="ft-link" onclick="qs(&#39;Bendigo, VIC&#39;,&#39;Removals&#39;)">Removalists Bendigo</a>
-        <a class="ft-link" onclick="qs(&#39;Albury–Wodonga, NSW/VIC&#39;,&#39;Removals&#39;)">Removalists Albury</a>
+        <a class="ft-link" onclick="qs('Newcastle, NSW','Removals')">Removalists Newcastle</a>
+        <a class="ft-link" onclick="qs('Wollongong, NSW','Removals')">Removalists Wollongong</a>
+        <a class="ft-link" onclick="qs('Geelong, VIC','Removals')">Removalists Geelong</a>
+        <a class="ft-link" onclick="qs('Ballarat, VIC','Bond Cleaning')">Bond Cleaning Ballarat</a>
+        <a class="ft-link" onclick="qs('Bendigo, VIC','Removals')">Removalists Bendigo</a>
+        <a class="ft-link" onclick="qs('Albury–Wodonga, NSW/VIC','Removals')">Removalists Albury</a>
       </div>
       <div class="ft-col">
         <h5>WA / SA / TAS</h5>
-        <a class="ft-link" onclick="qs(&#39;Bunbury, WA&#39;,&#39;Removals&#39;)">Removalists Bunbury</a>
-        <a class="ft-link" onclick="qs(&#39;Mandurah, WA&#39;,&#39;Removals&#39;)">Removalists Mandurah</a>
-        <a class="ft-link" onclick="qs(&#39;Launceston, TAS&#39;,&#39;Removals&#39;)">Removalists Launceston</a>
-        <a class="ft-link" onclick="qs(&#39;Bunbury, WA&#39;,&#39;Bond Cleaning&#39;)">Bond Cleaning Bunbury</a>
-        <a class="ft-link" onclick="qs(&#39;Mandurah, WA&#39;,&#39;Storage&#39;)">Storage Mandurah</a>
-        <a class="ft-link" onclick="qs(&#39;Mount Gambier, SA&#39;,&#39;Removals&#39;)">Removalists Mt Gambier</a>
+        <a class="ft-link" onclick="qs('Bunbury, WA','Removals')">Removalists Bunbury</a>
+        <a class="ft-link" onclick="qs('Mandurah, WA','Removals')">Removalists Mandurah</a>
+        <a class="ft-link" onclick="qs('Launceston, TAS','Removals')">Removalists Launceston</a>
+        <a class="ft-link" onclick="qs('Bunbury, WA','Bond Cleaning')">Bond Cleaning Bunbury</a>
+        <a class="ft-link" onclick="qs('Mandurah, WA','Storage')">Storage Mandurah</a>
+        <a class="ft-link" onclick="qs('Mount Gambier, SA','Removals')">Removalists Mt Gambier</a>
       </div>
       <div class="ft-col">
         <h5>Company</h5>
         <a class="ft-link" onclick="handlePartner()">Partner Hub Login</a>
-        <a class="ft-link" href="file:///cdn-cgi/l/email-protection#b6ded3dadad9f6dbd9c0d3dbd7c2d398d7c3"><span class="__cf_email__" data-cfemail="e58d8089898aa5888a938088849180cb8490">[email&nbsp;protected]</span></a>
-        <a class="ft-link" onclick="sid(&#39;faq-sec&#39;)">Help Centre / FAQ</a>
+        <a class="ft-link" href="/cdn-cgi/l/email-protection#b6ded3dadad9f6dbd9c0d3dbd7c2d398d7c3"><span class="__cf_email__" data-cfemail="e58d8089898aa5888a938088849180cb8490">[email&#160;protected]</span></a>
+        <a class="ft-link" onclick="sid('faq-sec')">Help Centre / FAQ</a>
         <a class="ft-link">About MoveMate</a>
         <a class="ft-link">Terms &amp; Conditions</a>
         <a class="ft-link">Privacy Policy</a>
       </div>
     </div>
     <div class="ft-bottom">
-      <span>© 2025 MoveMate Pty Ltd · <a href="https://movemate.au/">movemate.au</a> · <a href="file:///cdn-cgi/l/email-protection#afc7cac3c3c0efc2c0d9cac2cedbca81ceda"><span class="__cf_email__" data-cfemail="dbb3beb7b7b49bb6b4adbeb6baafbef5baae">[email&nbsp;protected]</span></a></span>
+      <span>© 2025 MoveMate Pty Ltd · <a href="https://movemate.au">movemate.au</a> · <a href="/cdn-cgi/l/email-protection#afc7cac3c3c0efc2c0d9cac2cedbca81ceda"><span class="__cf_email__" data-cfemail="dbb3beb7b7b49bb6b4adbeb6baafbef5baae">[email&#160;protected]</span></a></span>
       <span>ABN Verified · Made for Regional Australia</span>
     </div>
   </div>
@@ -746,7 +746,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   <div class="ob-wrap">
     <div class="ob-card">
       <h2>Become a Partner</h2>
-      <p class="sub">Join 190+ verified businesses. Questions? <a href="file:///cdn-cgi/l/email-protection#e48c8188888ba4898b928189859081ca8591" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="80e8e5ececefc0edeff6e5ede1f4e5aee1f5">[email&nbsp;protected]</span></a></p>
+      <p class="sub">Join 190+ verified businesses. Questions? <a href="/cdn-cgi/l/email-protection#e48c8188888ba4898b928189859081ca8591" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="80e8e5ececefc0edeff6e5ede1f4e5aee1f5">[email&#160;protected]</span></a></p>
       <div class="free-badge"><i class="fas fa-gift"></i><span><strong>2 free leads</strong> when you complete onboarding — no card needed.</span></div>
       <div class="fg"><label class="fl">Business Name</label><input class="form-inp na" id="ob-bname" placeholder="e.g. Mackay City Removals" style="width:100%;"></div>
       <div class="fg"><label class="fl">Your Name</label><input class="form-inp na" id="ob-name" placeholder="First &amp; last name" style="width:100%;"></div>
@@ -754,14 +754,14 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="fg">
         <label class="fl">Services Offered</label>
         <div class="svc-checks">
-          <label class="svc-chk"><input type="checkbox" name="ob-s" value="Removals" checked=""><i class="fas fa-truck-moving"></i> Removals</label>
+          <label class="svc-chk"><input type="checkbox" name="ob-s" value="Removals" checked><i class="fas fa-truck-moving"></i> Removals</label>
           <label class="svc-chk"><input type="checkbox" name="ob-s" value="Bond Cleaning"><i class="fas fa-spray-can-sparkles"></i> Cleaning</label>
           <label class="svc-chk"><input type="checkbox" name="ob-s" value="Storage"><i class="fas fa-warehouse"></i> Storage</label>
         </div>
       </div>
       <div class="fg"><label class="fl">Cities You Service</label><div class="city-cbs" id="ob-cities"></div></div>
       <button class="ob-btn" onclick="registerPartner()"><i class="fas fa-check-circle"></i> Claim My 2 Free Leads</button>
-      <div class="back-link" onclick="showView(&#39;main&#39;)">← Back to main site</div>
+      <div class="back-link" onclick="showView('main')">← Back to main site</div>
     </div>
   </div>
 </div>
@@ -790,10 +790,10 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="leads-bar">
         <h3>Live Leads <span id="lead-badge" style="font-size:.72rem;font-weight:600;color:var(--mid);margin-left:5px;"></span></h3>
         <div class="fbar">
-          <button class="fpill on" onclick="filterLeads(&#39;all&#39;,this)">All</button>
-          <button class="fpill" onclick="filterLeads(&#39;Removals&#39;,this)">Removals</button>
-          <button class="fpill" onclick="filterLeads(&#39;Cleaning&#39;,this)">Cleaning</button>
-          <button class="fpill" onclick="filterLeads(&#39;Storage&#39;,this)">Storage</button>
+          <button class="fpill on" onclick="filterLeads('all',this)">All</button>
+          <button class="fpill" onclick="filterLeads('Removals',this)">Removals</button>
+          <button class="fpill" onclick="filterLeads('Cleaning',this)">Cleaning</button>
+          <button class="fpill" onclick="filterLeads('Storage',this)">Storage</button>
         </div>
       </div>
       <div id="leads-list"></div>
@@ -809,9 +809,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="packgrid">
         <div class="pack" onclick="doPurchase(150,15)"><div class="pack-name">Starter</div><div class="pack-leads">15 Leads</div><div class="pack-price">$150</div><div class="pack-note">$10/lead. Great for getting started.</div></div>
         <div class="pack feat" onclick="doPurchase(275,30)"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save $25. $9.17 per lead.</div></div>
-        <div class="pack" onclick="doPurchase(199,&#39;unlimited&#39;)"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
+        <div class="pack" onclick="doPurchase(199,'unlimited')"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
       </div>
-      <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="file:///cdn-cgi/l/email-protection#e9818c858586a984869f8c84889d8cc7889c" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="4b232e2727240b26243d2e262a3f2e652a3e">[email&nbsp;protected]</span></a></div>
+      <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="/cdn-cgi/l/email-protection#e9818c858586a984869f8c84889d8cc7889c" style="color:var(--blue);"><span class="__cf_email__" data-cfemail="4b232e2727240b26243d2e262a3f2e652a3e">[email&#160;protected]</span></a></div>
     </div>
   </div>
 </div>
@@ -819,6 +819,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 
 
 <script>
+// ── API URL ─────────────────────────────────────────────────────────────────
+const API_URL = 'https://movemate-api-production.up.railway.app';
+
 // ── DATA ─────────────────────────────────────────────────────────────────────
 const CITIES=[
   {n:'Townsville',    s:'QLD',p:'196k', lat:-19.2590,lng:146.8169, subs:['Kirwan','Mundingburra','Douglas','Mount Louisa','Annandale','Thuringowa Central','Hyde Park','Bohle Plains','Kelso','Idalia']},
@@ -995,18 +998,48 @@ window.handleOtherInput = function(){
   }
 };
 
-window.submitQuote = function(){
+window.submitQuote = async function(){
   const cityVal=document.getElementById('sel-city').value;
   if(!cityVal){alert('Please select your city or town.');return;}
-  if(cityVal==='other'){
+  const isOther=cityVal==='other';
+  if(isOther){
     const suburb=document.getElementById('other-suburb').value.trim();
     if(!suburb){alert('Please enter your suburb or town name.');document.getElementById('other-suburb').focus();return;}
-    document.getElementById('city-confirm').textContent=suburb;
-  } else {
-    document.getElementById('city-confirm').textContent=cityVal;
   }
-  document.getElementById('form-state').style.display='none';
-  document.getElementById('success-state').style.display='block';
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!phone){alert('Please enter your name and mobile number.');return;}
+  const btn=document.querySelector('.qbtn');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending...';}
+  const city=isOther?document.getElementById('other-suburb').value.trim():cityVal;
+  try{
+    const res=await fetch(API_URL+'/leads',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        city,services:activeSvcs.join(' + '),
+        from_suburb:document.getElementById('f-from').value,
+        to_suburb:document.getElementById('f-to').value,
+        property_size:document.getElementById('f-beds').value,
+        move_date:document.getElementById('f-date').value,
+        name,phone,
+        clean_type:document.getElementById('f-clean-type')?document.getElementById('f-clean-type').value:'',
+        storage_size:document.getElementById('f-storage-size')?document.getElementById('f-storage-size').value:'',
+        other_location:isOther?city:''
+      })
+    });
+    const data=await res.json();
+    document.getElementById('city-confirm').textContent=city;
+    document.getElementById('form-state').style.display='none';
+    document.getElementById('success-state').style.display='block';
+  }catch(err){
+    console.error('Lead error:',err);
+    document.getElementById('city-confirm').textContent=city;
+    document.getElementById('form-state').style.display='none';
+    document.getElementById('success-state').style.display='block';
+  }finally{
+    if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-bolt"></i> Get Free Quotes';}
+  }
 };
 
 window.resetForm = function(){
@@ -1073,12 +1106,50 @@ window.buyPack = function(price,qty,tier){
   alert(tier+' pack activated. '+qty+' leads added for $'+price+'. (Demo — no real charge)');
 };
 
-window.registerPartner = function(){
+window.registerPartner = async function(){
   const bname=document.getElementById('ob-bname').value.trim();
+  const phone=document.getElementById('ob-phone').value.trim();
   if(!bname){alert('Please enter your business name.');return;}
+  if(!phone){alert('Please enter your mobile number.');return;}
   const svcs=[...document.querySelectorAll('[name="ob-s"]:checked')].map(e=>e.value);
   const cities=[...document.querySelectorAll('[name="ob-c"]:checked')].map(e=>e.value);
-  partner={bname,svcs,cities}; credits=2;
+  const btn=document.querySelector('.ob-submit');
+  if(btn){btn.disabled=true;btn.textContent='Registering...';}
+  try{
+    const res=await fetch(API_URL+'/partners/register',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        business_name:bname,
+        contact_name:document.getElementById('ob-name')?document.getElementById('ob-name').value.trim():'',
+        phone,
+        email:document.getElementById('ob-email')?document.getElementById('ob-email').value.trim():'',
+        services:svcs,cities
+      })
+    });
+    const data=await res.json();
+    if(data.success||data.partnerId){
+      partner={bname,svcs,cities,id:data.partnerId};credits=data.credits||2;
+      document.getElementById('nav-partner-btn').textContent='My Dashboard';
+      document.getElementById('dash-bname').textContent=bname;
+      document.getElementById('dash-svcs').textContent=svcs.join(' · ')+(cities.length?' · '+cities.slice(0,3).join(', ')+(cities.length>3?' +'+(cities.length-3)+' more':''):'');
+      document.getElementById('d-credits').textContent=credits;
+      document.getElementById('ds-avail').textContent=LEADS.filter(l=>!l.done).length;
+      document.getElementById('ds-unlocked').textContent=0;
+      document.getElementById('ds-value').textContent='$450-$2,400';
+      renderLeads();window.showView('dash');
+    }else{alert(data.error||'Registration failed. Please try again.');}
+  }catch(err){
+    console.error('Registration error:',err);
+    partner={bname,svcs,cities};credits=2;
+    document.getElementById('nav-partner-btn').textContent='My Dashboard';
+    document.getElementById('dash-bname').textContent=bname;
+    document.getElementById('d-credits').textContent=2;
+    renderLeads();window.showView('dash');
+  }finally{
+    if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-check-circle"></i> Claim My 2 Free Leads';}
+  }
+}; credits=2;
   document.getElementById('nav-partner-btn').textContent='My Dashboard';
   document.getElementById('dash-bname').textContent=bname;
   document.getElementById('dash-svcs').textContent=svcs.join(' · ')+(cities.length?' · '+cities.slice(0,3).join(', ')+(cities.length>3?' +'+cities.length-3+' more':''):'');
@@ -1226,5 +1297,5 @@ buildBiz();
 buildSuburbLinks();
 window.showView('main');
 </script>
-
-</body></html>
+</body>
+</html>
