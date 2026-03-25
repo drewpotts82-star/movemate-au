@@ -1190,6 +1190,8 @@ const OTHER_TOWNS=[
 
 function showRoutingNotice(suburb,city,distKm){
   var wrap=document.getElementById('other-location-wrap');
+  var old=document.getElementById('routing-notice');
+  if(old) old.remove();
   var el=document.createElement('div');
   el.id='routing-notice';
   el.style.cssText='margin-top:8px;padding:10px 14px;border-radius:9px;font-size:.78rem;line-height:1.6;';
@@ -1197,11 +1199,13 @@ function showRoutingNotice(suburb,city,distKm){
     el.style.background='var(--blue-lt)';
     el.style.border='1px solid rgba(26,92,248,.2)';
     var dist=distKm?' ('+distKm+'km from '+city.n+')':'';
-    el.innerHTML='<i class="fas fa-map-marker-alt" style="color:var(--blue);margin-right:5px;"></i><strong>Routing to our '+city.n+' partners</strong><br><span style="color:var(--mid);">Your request will be sent to verified '+city.s+' partners who service '+suburb+dist+'. They\'ll contact you directly.</span>';
+    el.innerHTML='<i class="fas fa-map-marker-alt" style="color:var(--blue);margin-right:5px;"></i><strong>Routing to '+city.n+' partners</strong><br>'
+      +'<span style="color:var(--mid);">Request sent to verified '+city.s+' partners servicing '+suburb+dist+'. They will contact you directly.</span>';
   } else {
     el.style.background='#fffbeb';
     el.style.border='1px solid rgba(202,138,4,.25)';
-    el.innerHTML='<i class="fas fa-envelope" style="color:#ca8a04;margin-right:5px;"></i><strong>We\'ll match you manually</strong><br><span style="color:var(--mid);"><strong>'+suburb+'</strong> isn\'t in our auto-match list yet. Your request will be emailed to <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a> and we\'ll find your nearest partner within a few hours.</span>';
+    el.innerHTML='<i class="fas fa-envelope" style="color:#ca8a04;margin-right:5px;"></i><strong>Manual match</strong><br>'
+      +'<span style="color:var(--mid);">'+suburb+' not in auto-match yet. We will email <a href=\"mailto:hello@movemate.au\" style=\"color:var(--blue)\">hello@movemate.au</a> to find your nearest partner.</span>';
   }
   wrap.appendChild(el);
 }
