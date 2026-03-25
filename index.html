@@ -1149,16 +1149,6 @@ window.registerPartner = async function(){
   }finally{
     if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-check-circle"></i> Claim My 2 Free Leads';}
   }
-}; credits=2;
-  document.getElementById('nav-partner-btn').textContent='My Dashboard';
-  document.getElementById('dash-bname').textContent=bname;
-  document.getElementById('dash-svcs').textContent=svcs.join(' Â· ')+(cities.length?' Â· '+cities.slice(0,3).join(', ')+(cities.length>3?' +'+cities.length-3+' more':''):'');
-  document.getElementById('d-credits').textContent=2;
-  document.getElementById('ds-avail').textContent=LEADS.filter(l=>!l.done).length;
-  document.getElementById('ds-unlocked').textContent=1;
-  document.getElementById('ds-value').textContent='$600-$2,400';
-  renderLeads();
-  window.showView('dash');
 };
 
 // ââ HAVERSINE & ROUTING ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
