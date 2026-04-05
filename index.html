@@ -1054,7 +1054,7 @@ window.doPurchaseSingle = async function() {
   try {
     var res = await fetch(API_URL + '/checkout', {
       method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ priceId: priceId, partnerId: partner.id, partnerEmail: partner.email || '', serviceType: svc })
+      body: JSON.stringify({ priceId: priceId, partnerId: partner.id, partnerEmail: partner.email || partner.phone || '', serviceType: 'Removalists' })
     });
     var data = await res.json();
     if (data.url) { closeTopup(); window.location.href = data.url; }
