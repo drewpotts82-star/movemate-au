@@ -565,6 +565,20 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   </div>
 </div>
 
+
+<div id="view-otp" style="display:none;">
+  <div class="ob-wrap"><div class="ob-card">
+    <h2>Enter Your Code</h2>
+    <p class="sub" id="otp-hint">We sent a 6-digit code. Enter it below.</p>
+    <div class="fg" style="margin-top:1.5rem;">
+      <label class="fl">6-Digit Code</label>
+      <input class="form-inp na" id="otp-code" type="tel" placeholder="000000" maxlength="6" style="font-size:1.8rem;letter-spacing:.3rem;text-align:center;width:100%;">
+    </div>
+    <button class="ob-btn" id="otp-btn" onclick="verifyOTP()"><i class="fas fa-check-circle"></i> Verify and Log In</button>
+    <div class="login-alt">Wrong details? <span onclick="showView('login')">Back to login</span></div>
+  </div></div>
+</div>
+
 <!-- ONBOARD VIEW -->
 <div id="view-onboard">
   <div class="ob-wrap">
@@ -719,6 +733,55 @@ function sid(id) {
 }
 
 // ── PARTNER LOGIN ─────────────────────────────────────────────────────────────
+
+var otpContact = '';
+window.requestOTP = async function() {
+  var contact = document.getElementById('login-phone').value.trim();
+  if (!contact) { alert('Please enter your mobile number or email.'); return; }
+  otpContact = contact;
+  var btn = document.getElementById('login-btn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  try {
+    var res = await fetch(API_URL + '/auth/request-otp', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact: contact })
+    });
+    var data = await res.json();
+    if (data.success) {
+      var hint = document.getElementById('otp-hint');
+      if (hint) hint.textContent = data.hint || 'Enter the 6-digit code we sent you.';
+      document.getElementById('otp-code').value = '';
+      showView('otp');
+    } else { alert(data.error || 'Could not send code. Please check your details.'); }
+  } catch(e) { alert('Network error. Please try again.'); }
+  finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Login Code'; }
+};
+window.verifyOTP = async function() {
+  var code = document.getElementById('otp-code').value.trim();
+  if (!code || code.length < 6) { alert('Please enter the 6-digit code.'); return; }
+  var btn = document.getElementById('otp-btn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+  try {
+    var res = await fetch(API_URL + '/auth/verify-otp', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact: otpContact, code: code })
+    });
+    var data = await res.json();
+    if (data.success && data.partner) {
+      partner = data.partner; credits = data.partner.credits || 0;
+      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
+      document.getElementById('dash-bname').textContent = partner.business_name;
+      document.getElementById('dash-svcs').textContent = (partner.services||[]).join(' - ');
+      document.getElementById('d-credits').textContent = credits;
+      document.getElementById('ds-avail').textContent = '0';
+      document.getElementById('ds-unlocked').textContent = '0';
+      document.getElementById('ds-value').textContent = '$0';
+      renderLeads([]); showView('dash');
+    } else { alert(data.error || 'Invalid or expired code. Please try again.'); }
+  } catch(e) { alert('Network error. Please try again.'); }
+  finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify and Log In'; }
+};
+
 window.loginPartner = async function() {
   const phone = document.getElementById('login-phone').value.trim();
   if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
