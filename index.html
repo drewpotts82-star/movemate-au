@@ -554,10 +554,10 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <p class="sub">Enter your mobile number or email to receive a login code.</p>
       <div class="fg">
         <label class="fl">Mobile Number</label>
-        <input class="form-inp na" id="login-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;" onkeydown="if(event.key==='Enter')loginPartner()">
+        <input class="form-inp na" id="login-phone" type="text" placeholder="04XX XXX XXX or your@email.com" style="width:100%;" onkeydown="if(event.key==='Enter')requestOTP()">
       </div>
-      <button class="ob-btn" id="login-btn" onclick="loginPartner()">
-        <i class="fas fa-sign-in-alt"></i> Access My Dashboard
+      <button class="ob-btn" id="login-btn" onclick="requestOTP()">
+        <i class="fas fa-paper-plane"></i> Send Login Code
       </button>
       <div class="login-alt">New partner? <span onclick="showView('onboard')">Register here →</span></div>
       <div class="back-link" onclick="showView('main')">— Back to main site</div>
@@ -695,7 +695,7 @@ const SUBURB_LINKS = {
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 window.showView = function(v) {
-  ['main','login','onboard','dash'].forEach(x => {
+  ['main','login','otp','onboard','dash'].forEach(x => {
     const el = document.getElementById('view-' + x);
     if (el) el.style.display = v === x ? 'block' : 'none';
   });
