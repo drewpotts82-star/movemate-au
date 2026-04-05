@@ -18,7 +18,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);f
 h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.1}
 a{text-decoration:none;color:inherit}
 button{font-family:'DM Sans',sans-serif}
-/* NAV */
 .nav{background:var(--navy);height:60px;display:flex;align-items:center;padding:0 2rem;position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(29,106,250,.4)}
 .nav-inner{max-width:1240px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px;cursor:pointer}
@@ -31,7 +30,6 @@ button{font-family:'DM Sans',sans-serif}
 .nav-link:hover{color:white}
 .nav-cta{background:var(--blue);color:white;font-size:0.82rem;font-weight:600;padding:7px 16px;border-radius:7px;border:none;cursor:pointer;transition:background 0.15s}
 .nav-cta:hover{background:var(--blue-dk)}
-/* HERO */
 .hero{background:var(--navy);padding:4.5rem 2rem 5rem;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,106,250,.12) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:4rem;align-items:start}
@@ -42,14 +40,13 @@ button{font-family:'DM Sans',sans-serif}
 .hero-stats{display:flex;gap:2.5rem}
 .hs-num{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--blue);line-height:1}
 .hs-lab{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
-/* QUOTE CARD */
 .qcard{background:var(--white);border-radius:18px;padding:1.75rem;box-shadow:0 30px 80px rgba(0,0,0,.45);border:1.5px solid var(--border)}
 .qcard-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:1.1rem}
 .qcard-fine{text-align:center;font-size:.7rem;color:var(--mid);margin-top:9px}
 .sel-wrap{position:relative;margin-bottom:10px}
 .sel-wrap select,.form-inp{width:100%;appearance:none;background:var(--paper);border:1.5px solid var(--border);border-radius:9px;padding:11px 38px 11px 12px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;color:var(--ink);outline:none;transition:border-color .15s}
 .sel-wrap select:focus,.form-inp:focus{border-color:var(--blue)}
-.sel-wrap::after{content:'\f107';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mid);pointer-events:none}
+.sel-wrap::after{content:'107';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mid);pointer-events:none}
 .form-inp::placeholder{color:#bbb}
 .form-inp.na{padding-right:12px}
 .svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
@@ -73,13 +70,11 @@ button{font-family:'DM Sans',sans-serif}
 .panel-hint{font-size:.7rem;color:#5a8a6a;margin-top:6px;line-height:1.5}
 #success-state{display:none;text-align:center;padding:1.5rem 0}
 .succ-icon{width:64px;height:64px;background:var(--sage-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--sage);margin:0 auto 1rem}
-/* TICKER */
 .ticker{background:#0a1628;overflow:hidden;white-space:nowrap;padding:9px 0}
 .ticker-track{display:inline-block;animation:tick 50s linear infinite}
 .ti{display:inline-flex;align-items:center;gap:7px;padding:0 2rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:white}
 .ti-sep{color:rgba(255,255,255,.35);font-size:.45rem}
 @keyframes tick{to{transform:translateX(-50%)}}
-/* SECTIONS */
 .sec{padding:5rem 2rem}
 .sec-inner{max-width:1240px;margin:0 auto}
 .sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
@@ -91,7 +86,6 @@ button{font-family:'DM Sans',sans-serif}
 .step-n{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--border);line-height:1;margin-bottom:.75rem}
 .step h4{font-size:1rem;font-weight:700;margin-bottom:.4rem}
 .step p{font-size:.875rem;color:var(--mid);line-height:1.6}
-/* CITIES */
 .cities-sec{background:var(--navy-mid)}
 .cities-sec .sec-label{color:rgba(29,106,250,.7)}
 .cities-sec h2{color:white}
@@ -109,13 +103,11 @@ button{font-family:'DM Sans',sans-serif}
 .cb-c{background:rgba(58,90,64,.3);color:#7ab87f}
 .cb-s{background:rgba(200,130,10,.2);color:#e8a93a}
 .cc-arr{color:rgba(255,255,255,.2);font-size:.8rem}
-/* SUBURB */
 .suburb-sec{background:var(--cream)}
 .suburb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1.5rem}
 .suburb-col h4{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid rgba(29,106,250,.4)}
 .suburb-link{display:block;font-size:.8rem;color:var(--mid);padding:3px 0;cursor:pointer;transition:color .15s}
 .suburb-link:hover{color:var(--blue)}
-/* BIZ */
 .bizgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.1rem}
 .bizcard{background:white;border-radius:14px;padding:1.4rem;border:1.5px solid var(--border);transition:all .15s}
 .bizcard:hover{box-shadow:0 8px 30px rgba(0,0,0,.07);transform:translateY(-2px)}
@@ -130,7 +122,6 @@ button{font-family:'DM Sans',sans-serif}
 .biz-blurb{font-size:.82rem;color:var(--mid);line-height:1.55;margin-bottom:.9rem}
 .biz-btn{font-size:.76rem;font-weight:600;padding:7px 14px;border-radius:7px;border:1.5px solid var(--border);background:transparent;cursor:pointer;transition:all .15s;color:var(--ink)}
 .biz-btn:hover{background:var(--blue);color:white;border-color:var(--blue)}
-/* PARTNER CTA */
 .partner-sec{background:#0f1f4a;padding:5rem 2rem;position:relative;overflow:hidden}
 .partner-inner{max-width:820px;margin:0 auto;text-align:center;position:relative}
 .partner-inner .sec-label{color:rgba(255,255,255,.5)}
@@ -139,12 +130,10 @@ button{font-family:'DM Sans',sans-serif}
 .p-features{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
 .p-feat{display:flex;align-items:center;gap:6px;color:white;font-size:.83rem;font-weight:600}
 .p-btn{background:white;color:var(--blue);font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;padding:13px 32px;border-radius:9px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-/* TRUST */
 .trust-strip{background:white;border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);padding:1.75rem 2rem}
 .trust-inner{max-width:1240px;margin:0 auto;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:center}
 .trust-item{display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;color:var(--mid)}
 .trust-item i{color:var(--blue);font-size:1.1rem}
-/* FAQ */
 .faq-sec{background:var(--cream)}
 .faq-list{max-width:700px}
 .faq-item{border-bottom:1.5px solid var(--border)}
@@ -153,7 +142,6 @@ button{font-family:'DM Sans',sans-serif}
 .faq-item.open .faq-q i{transform:rotate(180deg);color:var(--blue)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease-out;font-size:.87rem;color:var(--mid);line-height:1.7}
 .faq-item.open .faq-a{max-height:250px;padding-bottom:1.1rem}
-/* FOOTER */
 footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 .ft-inner{max-width:1240px;margin:0 auto}
 .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -164,8 +152,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 .ft-link{display:block;font-size:.8rem;color:rgba(255,255,255,.42);margin-bottom:5px;cursor:pointer;transition:color .15s}
 .ft-link:hover{color:white}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:8px}
-/* VIEWS */
-#view-login,#view-onboard,#view-dash{display:none}
+#view-login,#view-otp,#view-onboard,#view-dash{display:none}
 .ob-wrap{min-height:calc(100vh - 60px);display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem;background:var(--paper)}
 .ob-card{background:white;border-radius:20px;padding:2.5rem;max-width:540px;width:100%;border:1.5px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.07)}
 .ob-card h2{font-size:1.7rem;font-weight:800;margin-bottom:4px}
@@ -186,7 +173,8 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 .back-link{text-align:center;font-size:.82rem;color:var(--mid);cursor:pointer;margin-top:10px;padding:8px}
 .login-alt{text-align:center;margin-top:1rem;font-size:.85rem;color:var(--mid)}
 .login-alt span{color:var(--blue);cursor:pointer;font-weight:600}
-/* DASH */
+.otp-input{width:100%;font-size:2rem;letter-spacing:.4rem;text-align:center;padding:14px;border:1.5px solid var(--border);border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;outline:none;background:var(--paper)}
+.otp-input:focus{border-color:var(--blue)}
 .dash-wrap{background:var(--paper);min-height:calc(100vh - 60px);padding:2rem}
 .dash-inner{max-width:1240px;margin:0 auto}
 .dash-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
@@ -221,14 +209,13 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 .unlock-btn:hover{background:var(--blue);color:white}
 .unlock-btn.done{background:var(--sage-lt);border-color:var(--sage);color:var(--sage);cursor:default}
 .contact-reveal{background:var(--sage-lt);border:1.5px solid var(--sage);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:.82rem}
-/* MODAL */
 #modal-topup{display:none;position:fixed;inset:0;z-index:200;background:rgba(17,18,16,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem}
-.modal-box{background:white;border-radius:18px;max-width:620px;width:100%;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.3)}
+.modal-box{background:white;border-radius:18px;max-width:520px;width:100%;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.3)}
 .mhead{padding:1.4rem 1.75rem;border-bottom:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .mhead h3{font-size:1.1rem;font-weight:800}
 .mclose{background:none;border:none;color:var(--mid);cursor:pointer;font-size:1rem}
 .mbody{padding:1.75rem}
-.packgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.packgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .pack{border:2px solid var(--border);border-radius:13px;padding:1.4rem 1.1rem;cursor:pointer;transition:all .15s;text-align:center;position:relative;overflow:hidden}
 .pack:hover{border-color:var(--blue)}
 .pack.feat{border-color:var(--blue);background:var(--blue-lt)}
@@ -238,6 +225,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
 .pack-price{font-size:.95rem;font-weight:700;color:var(--blue);margin-bottom:6px}
 .pack-note{font-size:.7rem;color:var(--mid);line-height:1.4}
 .mpay-note{text-align:center;font-size:.72rem;color:var(--mid);margin-top:1.1rem}
+.max-comp-badge{background:var(--sage-lt);color:var(--sage);font-size:.75rem;font-weight:600;padding:8px 14px;border-radius:9px;margin-bottom:1.25rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
 @media(max-width:960px){.hero-inner{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.dstats{grid-template-columns:1fr 1fr}.ft-top{grid-template-columns:1fr 1fr 1fr}}
 @media(max-width:640px){.nav{padding:0 1rem}.nav-link{display:none}.hero{padding:3rem 1.25rem 3.5rem}.sec{padding:3rem 1.25rem}.frow{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr}.packgrid{grid-template-columns:1fr}.dstats{grid-template-columns:1fr}.ft-top{grid-template-columns:1fr 1fr}.city-cbs{grid-template-columns:1fr}.lead-card{flex-wrap:wrap}}
 </style>
@@ -460,7 +448,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <h2>Grow your regional<br>moving business.</h2>
     <p>Get qualified leads from customers actively moving in your city. No cold calls, no contracts. Pay only for the leads you unlock.</p>
     <div class="p-features">
-      <div class="p-feat"><i class="fas fa-check-circle"></i> 2 Free Leads to Start</div>
+      <div class="p-feat"><i class="fas fa-check-circle"></i> Only 3 Businesses Per Lead</div>
       <div class="p-feat"><i class="fas fa-check-circle"></i> Choose Your Service Areas</div>
       <div class="p-feat"><i class="fas fa-check-circle"></i> Real-Time SMS Notifications</div>
       <div class="p-feat"><i class="fas fa-check-circle"></i> No Lock-In Contract</div>
@@ -486,7 +474,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is MoveMate free for customers? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes, 100% free. You never pay to receive quotes. MoveMate is funded by professional partners who pay a small fee to receive qualified leads.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How are removalists and cleaners verified? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Every partner submits their ABN and current certificate of public liability insurance before being approved. We manually review all applications.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How fast will I receive quotes? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Most customers receive their first quote within 30-60 minutes. All partner businesses receive a real-time SMS alert the moment your request is submitted.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What does it cost to be a partner? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Partners start with 2 free leads. After that, leads are purchased in bundles from $10 per lead. No contracts, cancel any time.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What does it cost to be a partner? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Removalist leads are $12 each. Bond cleaning leads are $8 each. Storage leads are $12 each. Maximum 3 businesses per lead — so you're not competing with dozens of others.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can I request quotes for multiple services at once? <i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. Select Removals, Bond Cleaning and Storage together. Each request goes to the relevant specialist types in your city.</div></div>
     </div>
   </div>
@@ -551,16 +539,35 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   <div class="ob-wrap">
     <div class="ob-card">
       <h2>Partner Login</h2>
-      <p class="sub">Enter your mobile number to access your lead dashboard.</p>
+      <p class="sub">Enter your mobile number or email to receive a 6-digit login code.</p>
       <div class="fg">
-        <label class="fl">Mobile Number</label>
-        <input class="form-inp na" id="login-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;" onkeydown="if(event.key==='Enter')loginPartner()">
+        <label class="fl">Mobile Number or Email Address</label>
+        <input class="form-inp na" id="login-contact" type="text" placeholder="04XX XXX XXX or your@email.com" style="width:100%;" onkeydown="if(event.key==='Enter')requestOTP()">
       </div>
-      <button class="ob-btn" id="login-btn" onclick="loginPartner()">
-        <i class="fas fa-sign-in-alt"></i> Access My Dashboard
+      <button class="ob-btn" id="login-btn" onclick="requestOTP()">
+        <i class="fas fa-paper-plane"></i> Send Login Code
       </button>
       <div class="login-alt">New partner? <span onclick="showView('onboard')">Register here →</span></div>
       <div class="back-link" onclick="showView('main')">— Back to main site</div>
+    </div>
+  </div>
+</div>
+
+<!-- OTP VIEW -->
+<div id="view-otp">
+  <div class="ob-wrap">
+    <div class="ob-card">
+      <h2>Check Your Phone</h2>
+      <p class="sub" id="otp-hint">We sent a 6-digit code. Enter it below to log in.</p>
+      <div class="fg" style="margin-top:1.5rem;">
+        <label class="fl">6-Digit Code</label>
+        <input class="otp-input" id="otp-code" type="tel" placeholder="000000" maxlength="6" onkeydown="if(event.key==='Enter')verifyOTP()">
+      </div>
+      <button class="ob-btn" id="otp-btn" onclick="verifyOTP()">
+        <i class="fas fa-check-circle"></i> Verify &amp; Log In
+      </button>
+      <div class="login-alt">Wrong details? <span onclick="showView('login')">← Back to login</span></div>
+      <div class="login-alt" style="margin-top:.5rem;">Didn't receive it? <span onclick="resendOTP()">Resend code</span></div>
     </div>
   </div>
 </div>
@@ -571,21 +578,21 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="ob-card">
       <h2>Become a Partner</h2>
       <p class="sub">Join 190+ verified businesses. Questions? <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a></p>
-      <div class="free-badge"><i class="fas fa-gift"></i><span><strong>2 free leads</strong> when you complete onboarding — no card needed.</span></div>
+      <div class="free-badge"><i class="fas fa-users"></i><span><strong>Max 3 businesses</strong> compete per lead — giving you a real shot at winning the job.</span></div>
       <div class="fg"><label class="fl">Business Name</label><input class="form-inp na" id="ob-bname" placeholder="e.g. Mackay City Removals" style="width:100%;"></div>
       <div class="fg"><label class="fl">Your Name</label><input class="form-inp na" id="ob-name" placeholder="First &amp; last name" style="width:100%;"></div>
-      <div class="fg"><label class="fl">Mobile Number</label><input class="form-inp na" id="ob-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;"></div>
-      <div class="fg"><label class="fl">Email Address</label><input class="form-inp na" id="ob-email" type="email" placeholder="your@email.com" style="width:100%;"></div>
+      <div class="fg"><label class="fl">Mobile Number <span style="font-weight:400;opacity:0.6;">(optional if email provided)</span></label><input class="form-inp na" id="ob-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;"></div>
+      <div class="fg"><label class="fl">Email Address <span style="font-weight:400;opacity:0.6;">(optional if mobile provided)</span></label><input class="form-inp na" id="ob-email" type="email" placeholder="your@email.com" style="width:100%;"></div>
       <div class="fg">
         <label class="fl">Services Offered</label>
         <div class="svc-checks">
-          <label class="svc-chk"><input type="checkbox" name="ob-s" value="Removals" checked><i class="fas fa-truck-moving"></i> Removals</label>
+          <label class="svc-chk"><input type="checkbox" name="ob-s" value="Removalists" checked><i class="fas fa-truck-moving"></i> Removalists</label>
           <label class="svc-chk"><input type="checkbox" name="ob-s" value="Bond Cleaning"><i class="fas fa-spray-can-sparkles"></i> Cleaning</label>
           <label class="svc-chk"><input type="checkbox" name="ob-s" value="Storage"><i class="fas fa-warehouse"></i> Storage</label>
         </div>
       </div>
       <div class="fg"><label class="fl">Cities You Service</label><div class="city-cbs" id="ob-cities"></div></div>
-      <button class="ob-btn" onclick="registerPartner()"><i class="fas fa-check-circle"></i> Claim My 2 Free Leads</button>
+      <button class="ob-btn" onclick="registerPartner()"><i class="fas fa-check-circle"></i> Create My Partner Account</button>
       <div class="login-alt">Already a partner? <span onclick="showView('login')">Log in here →</span></div>
       <div class="back-link" onclick="showView('main')">— Back to main site</div>
     </div>
@@ -630,10 +637,20 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   <div class="modal-box">
     <div class="mhead"><h3>Top Up Lead Credits</h3><button class="mclose" onclick="closeTopup()"><i class="fas fa-times"></i></button></div>
     <div class="mbody">
+      <div class="max-comp-badge"><i class="fas fa-users"></i> Max 3 businesses compete per job — you have a real shot at winning.</div>
       <div class="packgrid">
-        <div class="pack" onclick="doPurchase(15,150)"><div class="pack-name">Starter</div><div class="pack-leads">15 Leads</div><div class="pack-price">$150</div><div class="pack-note">$10/lead. Great for getting started.</div></div>
-        <div class="pack feat" onclick="doPurchase(30,275)"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save $25. Only $9.17 per lead.</div></div>
-        <div class="pack" onclick="doPurchase('unlimited',199)"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
+        <div class="pack" onclick="doPurchaseSingle()">
+          <div class="pack-name">Single Lead</div>
+          <div class="pack-leads" id="modal-single-price">$12</div>
+          <div class="pack-note" id="modal-single-note">Pay per lead. No commitment.</div>
+        </div>
+        <div class="pack feat" onclick="doPurchase30()">
+          <div class="pack-top-badge">Best Value</div>
+          <div class="pack-name">Value Pack</div>
+          <div class="pack-leads">30 Leads</div>
+          <div class="pack-price">$275</div>
+          <div class="pack-note" id="modal-pack-note">Save on every lead.</div>
+        </div>
       </div>
       <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a></div>
     </div>
@@ -646,6 +663,7 @@ let partner = null;
 let credits = 0;
 let activeSvcs = ['Removals'];
 let currentLeads = [];
+let otpContact = '';
 
 // ── CITIES DATA ───────────────────────────────────────────────────────────────
 const CITIES = [
@@ -695,8 +713,8 @@ const SUBURB_LINKS = {
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 window.showView = function(v) {
-  ['main','login','onboard','dash'].forEach(x => {
-    const el = document.getElementById('view-' + x);
+  ['main','login','otp','onboard','dash'].forEach(function(x) {
+    var el = document.getElementById('view-' + x);
     if (el) el.style.display = v === x ? 'block' : 'none';
   });
   if (v === 'main') window.scrollTo({top:0,behavior:'smooth'});
@@ -709,162 +727,193 @@ window.handlePartner = function() {
 
 window.logout = function() {
   partner = null; credits = 0; currentLeads = [];
+  localStorage.removeItem('mm_partner');
   document.getElementById('nav-partner-btn').textContent = 'Partner Login';
-  showView('main');
+  showView('login');
 };
 
 function sid(id) {
   showView('main');
-  setTimeout(() => document.getElementById(id)?.scrollIntoView({behavior:'smooth'}), 80);
+  setTimeout(function() {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }, 80);
 }
 
-// ── PARTNER LOGIN ─────────────────────────────────────────────────────────────
-window.loginPartner = async function() {
-  const phone = document.getElementById('login-phone').value.trim();
-  if (!phone) { alert('Please enter your mobile number.'); return; }
-  const btn = document.getElementById('login-btn');
+// ── OTP LOGIN ─────────────────────────────────────────────────────────────────
+window.requestOTP = async function() {
+  var contact = document.getElementById('login-contact').value.trim();
+  if (!contact) { alert('Please enter your mobile number or email address.'); return; }
+  otpContact = contact;
+  var btn = document.getElementById('login-btn');
   btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Looking up...';
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
   try {
-    const cleaned = phone.replace(/\s/g,'');
-    const formatted = cleaned.startsWith('0') ? '+61' + cleaned.slice(1) : cleaned;
-    const res = await fetch(API_URL + '/partners/login?phone=' + encodeURIComponent(formatted));
-    const data = await res.json();
-    if (data.partner) {
-      partner = data.partner;
-      credits = data.partner.credits || 0;
-      currentLeads = data.availableLeads || [];
-      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
-      document.getElementById('dash-bname').textContent = data.partner.business_name;
-      document.getElementById('dash-svcs').textContent =
-        (data.partner.services||[]).join(' · ') +
-        (data.partner.cities?.length ? ' · ' + data.partner.cities.slice(0,2).join(', ') : '');
-      document.getElementById('d-credits').textContent = credits;
-      document.getElementById('ds-avail').textContent = currentLeads.length;
-      document.getElementById('ds-unlocked').textContent = (data.unlockedLeads||[]).length;
-      document.getElementById('ds-value').textContent = currentLeads.length > 0 ? '$' + (currentLeads.length * 800) + '+' : '$0';
-      renderLeads(currentLeads);
-      showView('dash');
+    var res = await fetch(API_URL + '/auth/request-otp', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact: contact })
+    });
+    var data = await res.json();
+    if (data.success) {
+      var hint = document.getElementById('otp-hint');
+      if (hint) hint.textContent = data.hint || 'Enter the 6-digit code we sent you.';
+      document.getElementById('otp-code').value = '';
+      showView('otp');
     } else {
-      alert('No partner found with that number. Please register first.');
+      alert(data.error || 'Could not send code. Please check your details and try again.');
     }
-  } catch(err) {
-    console.error('Login error:', err);
-    alert('Login failed. Please check your number and try again.');
+  } catch(e) {
+    alert('Network error. Please try again.');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access My Dashboard';
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Login Code';
+  }
+};
+
+window.resendOTP = function() {
+  showView('login');
+  if (otpContact) {
+    document.getElementById('login-contact').value = otpContact;
+  }
+};
+
+window.verifyOTP = async function() {
+  var code = document.getElementById('otp-code').value.trim();
+  if (!code || code.length < 6) { alert('Please enter the 6-digit code.'); return; }
+  var btn = document.getElementById('otp-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+  try {
+    var res = await fetch(API_URL + '/auth/verify-otp', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact: otpContact, code: code })
+    });
+    var data = await res.json();
+    if (data.success && data.partner) {
+      partner = data.partner;
+      credits = data.partner.credits || 0;
+      localStorage.setItem('mm_partner', JSON.stringify(partner));
+      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
+      document.getElementById('dash-bname').textContent = partner.business_name;
+      document.getElementById('dash-svcs').textContent = (partner.services||[]).join(' · ');
+      document.getElementById('d-credits').textContent = credits;
+      document.getElementById('ds-avail').textContent = '—';
+      document.getElementById('ds-unlocked').textContent = '0';
+      document.getElementById('ds-value').textContent = '$0';
+      renderLeads([]);
+      showView('dash');
+    } else {
+      alert(data.error || 'Invalid or expired code. Please try again.');
+    }
+  } catch(e) {
+    alert('Network error. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify &amp; Log In';
   }
 };
 
 // ── RENDER LEADS ──────────────────────────────────────────────────────────────
 function renderLeads(leads) {
-  const list = document.getElementById('leads-list');
+  var list = document.getElementById('leads-list');
   document.getElementById('lead-badge').textContent = '(' + leads.length + ')';
   if (!leads.length) {
-    list.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--mid);background:white;border-radius:12px;border:1.5px solid var(--border);"><i class="fas fa-bell" style="font-size:2rem;color:var(--border);display:block;margin-bottom:1rem;"></i>No leads in your area yet.<br>You\'ll get an SMS the moment one comes in!</div>';
+    list.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--mid);background:white;border-radius:12px;border:1.5px solid var(--border);"><i class="fas fa-bell" style="font-size:2rem;color:var(--border);display:block;margin-bottom:1rem;"></i>No leads in your area yet.<br>You'll get an SMS the moment one comes in!</div>';
     return;
   }
-  list.innerHTML = leads.map(l => {
-    const svc = l.services || 'Removals';
-    const k = svc.includes('Cleaning') && !svc.includes('Removals') ? 'c' : svc.includes('Storage') && !svc.includes('Removals') ? 's' : 'r';
-    const ico = k==='r' ? 'fa-truck-moving' : k==='c' ? 'fa-spray-can-sparkles' : 'fa-warehouse';
-    const ago = timeAgo(l.created_at);
-    return `<div class="lead-card">
-      <div class="lead-ico li-${k}"><i class="fas ${ico}"></i></div>
-      <div class="lead-info">
-        <div class="lead-svc">${svc}</div>
-        <div class="lead-route">${l.from_suburb||''}${l.to_suburb?' → '+l.to_suburb:''}</div>
-        <div class="lead-meta">
-          <span><i class="fas fa-map-marker-alt"></i>${l.city}</span>
-          <span><i class="fas fa-home"></i>${l.property_size||'Not specified'}</span>
-          ${l.move_date?`<span><i class="fas fa-calendar"></i>${l.move_date}</span>`:''}
-        </div>
-      </div>
-      <div class="lead-actions">
-        <div class="lead-time">${ago}</div>
-        <button class="unlock-btn" id="unlock-${l.id}" onclick="unlockLead('${l.id}')">
-          <i class="fas fa-lock-open"></i> Unlock · 1 credit
-        </button>
-      </div>
-    </div>`;
+  list.innerHTML = leads.map(function(l) {
+    var svc = l.services || 'Removals';
+    var k = svc.includes('Cleaning') && !svc.includes('Removals') ? 'c' : svc.includes('Storage') && !svc.includes('Removals') ? 's' : 'r';
+    var ico = k==='r' ? 'fa-truck-moving' : k==='c' ? 'fa-spray-can-sparkles' : 'fa-warehouse';
+    var ago = timeAgo(l.created_at);
+    return '<div class="lead-card">' +
+      '<div class="lead-ico li-' + k + '"><i class="fas ' + ico + '"></i></div>' +
+      '<div class="lead-info">' +
+        '<div class="lead-svc">' + svc + '</div>' +
+        '<div class="lead-route">' + (l.from_suburb||'') + (l.to_suburb?' → '+l.to_suburb:'') + '</div>' +
+        '<div class="lead-meta">' +
+          '<span><i class="fas fa-map-marker-alt"></i>' + l.city + '</span>' +
+          '<span><i class="fas fa-home"></i>' + (l.property_size||'Not specified') + '</span>' +
+          (l.move_date?'<span><i class="fas fa-calendar"></i>'+l.move_date+'</span>':'') +
+        '</div>' +
+      '</div>' +
+      '<div class="lead-actions">' +
+        '<div class="lead-time">' + ago + '</div>' +
+        '<button class="unlock-btn" id="unlock-' + l.id + '" onclick="unlockLead('' + l.id + '')">' +
+          '<i class="fas fa-lock-open"></i> Unlock · Pay by Card' +
+        '</button>' +
+      '</div>' +
+    '</div>';
   }).join('');
 }
 
 function timeAgo(dateStr) {
   if (!dateStr) return 'Just now';
-  const diff = Math.floor((Date.now() - new Date(dateStr)) / 60000);
+  var diff = Math.floor((Date.now() - new Date(dateStr)) / 60000);
   if (diff < 1) return 'Just now';
   if (diff < 60) return diff + 'm ago';
   if (diff < 1440) return Math.floor(diff/60) + 'h ago';
   return Math.floor(diff/1440) + 'd ago';
 }
 
-// ── UNLOCK LEAD ───────────────────────────────────────────────────────────────
+// ── UNLOCK LEAD — goes to Stripe checkout ────────────────────────────────────
 window.unlockLead = async function(leadId) {
   if (!partner) { alert('Please log in first.'); return; }
-  if (credits <= 0 && partner.tier !== 'gold') {
-    if (confirm('No credits remaining. Top up now?')) openTopup();
-    return;
-  }
-  const btn = document.getElementById('unlock-' + leadId);
-  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Unlocking...'; }
+  var btn = document.getElementById('unlock-' + leadId);
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...'; }
   try {
-    const res = await fetch(API_URL + '/partners/unlock', {
+    var res = await fetch(API_URL + '/lead/' + leadId + '/unlock', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({partnerId: partner.id, leadId})
+      body: JSON.stringify({
+        businessPhone: partner.phone || '',
+        businessName: partner.business_name
+      })
     });
-    const data = await res.json();
-    if (data.success) {
-      credits = data.creditsRemaining === 'unlimited' ? 9999 : data.creditsRemaining;
-      document.getElementById('d-credits').textContent = data.creditsRemaining === 'unlimited' ? '∞' : credits;
-      if (btn) {
-        btn.closest('.lead-actions').innerHTML = `
-          <div class="unlock-btn done"><i class="fas fa-check"></i> Unlocked</div>
-          <div class="contact-reveal">
-            <strong>${data.lead.customerName}</strong><br>
-            <a href="tel:${data.lead.customerPhone}" style="color:var(--sage);font-weight:700;font-size:.95rem;">
-              <i class="fas fa-phone"></i> ${data.lead.customerPhone}
-            </a>
-          </div>`;
-      }
+    var data = await res.json();
+    if (data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
     } else {
-      alert(data.error || 'Could not unlock lead.');
-      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · 1 credit'; }
+      alert(data.error || 'Could not start checkout. Please try again.');
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · Pay by Card'; }
     }
-  } catch(err) {
-    alert('Error unlocking lead. Please try again.');
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · 1 credit'; }
+  } catch(e) {
+    alert('Error. Please try again.');
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · Pay by Card'; }
   }
 };
 
 // ── REGISTER PARTNER ──────────────────────────────────────────────────────────
 window.registerPartner = async function() {
-  const bname = document.getElementById('ob-bname').value.trim();
-  const phone = document.getElementById('ob-phone').value.trim();
-  const email = document.getElementById('ob-email')?.value.trim() || '';
+  var bname = document.getElementById('ob-bname').value.trim();
+  var phone = document.getElementById('ob-phone').value.trim();
+  var email = document.getElementById('ob-email') ? document.getElementById('ob-email').value.trim() : '';
   if (!bname) { alert('Please enter your business name.'); return; }
-  if (!phone) { alert('Please enter your mobile number.'); return; }
-  const svcs = [...document.querySelectorAll('[name="ob-s"]:checked')].map(e => e.value);
-  const cities = [...document.querySelectorAll('[name="ob-c"]:checked')].map(e => e.value);
-  const btn = document.querySelector('#view-onboard .ob-btn');
+  if (!phone && !email) { alert('Please enter your mobile number or email address — at least one is required.'); return; }
+  var svcs = Array.from(document.querySelectorAll('[name="ob-s"]:checked')).map(function(e){return e.value;});
+  var cities = Array.from(document.querySelectorAll('[name="ob-c"]:checked')).map(function(e){return e.value;});
+  var btn = document.querySelector('#view-onboard .ob-btn');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...'; }
   try {
-    const res = await fetch(API_URL + '/partners/register', {
+    var res = await fetch(API_URL + '/partners/register', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         business_name: bname,
-        contact_name: document.getElementById('ob-name')?.value.trim() || '',
-        phone, email, services: svcs, cities
+        contact_name: document.getElementById('ob-name') ? document.getElementById('ob-name').value.trim() : '',
+        phone: phone || null,
+        email: email || null,
+        services: svcs,
+        cities: cities
       })
     });
-    const data = await res.json();
+    var data = await res.json();
     if (data.success || data.partnerId) {
-      partner = {business_name: bname, services: svcs, cities, id: data.partnerId, tier: 'starter'};
-      credits = data.credits || 2;
-      currentLeads = [];
+      partner = {business_name: bname, services: svcs, cities: cities, id: data.partnerId, phone: phone || null, email: email || null, tier: 'pay-per-lead'};
+      credits = data.credits || 0;
+      localStorage.setItem('mm_partner', JSON.stringify(partner));
       document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
       document.getElementById('dash-bname').textContent = bname;
       document.getElementById('dash-svcs').textContent = svcs.join(' · ') + (cities.length ? ' · ' + cities.slice(0,2).join(', ') : '');
@@ -877,72 +926,139 @@ window.registerPartner = async function() {
     } else {
       alert(data.error || 'Registration failed. Please try again.');
     }
-  } catch(err) {
-    console.error('Registration error:', err);
+  } catch(e) {
+    console.error('Registration error:', e);
     alert('Registration failed. Please try again.');
   } finally {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Claim My 2 Free Leads'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Create My Partner Account'; }
+  }
+};
+
+// ── TOPUP MODAL ───────────────────────────────────────────────────────────────
+window.openTopup = function() {
+  var svc = (partner && partner.services && partner.services[0]) || 'Removalists';
+  var s = svc.toLowerCase();
+  var price = (s.includes('clean') || s.includes('bond')) ? 8 : 12;
+  var packSaving = price === 8 ? 'Save on every cleaner lead.' : 'Save on every lead.';
+  var el = document.getElementById('modal-single-price');
+  var noteEl = document.getElementById('modal-single-note');
+  var packNoteEl = document.getElementById('modal-pack-note');
+  if (el) el.textContent = '$' + price;
+  if (noteEl) noteEl.textContent = 'Pay per ' + (price === 8 ? 'cleaner' : 'removalist/storage') + ' lead. No commitment.';
+  if (packNoteEl) packNoteEl.textContent = packSaving;
+  document.getElementById('modal-topup').style.display = 'flex';
+};
+
+window.closeTopup = function() {
+  document.getElementById('modal-topup').style.display = 'none';
+};
+
+window.doPurchaseSingle = async function() {
+  if (!partner) { alert('Please log in first.'); return; }
+  var svc = (partner.services && partner.services[0]) || 'Removalists';
+  var s = svc.toLowerCase();
+  var priceId = 'price_1TEj6ZIyIz1h2UAowheoi5bM';
+  if (s.includes('clean') || s.includes('bond')) priceId = 'price_1TIkfAIyIz1h2UAouHHGxsly';
+  else if (s.includes('storage')) priceId = 'price_1TIkfPIyIz1h2UAoS6kMR1jm';
+  try {
+    var res = await fetch(API_URL + '/checkout', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        priceId: priceId,
+        partnerId: partner.id,
+        partnerEmail: partner.email || '',
+        serviceType: svc
+      })
+    });
+    var data = await res.json();
+    if (data.url) { closeTopup(); window.location.href = data.url; }
+    else alert(data.error || 'Error starting checkout. Please try again.');
+  } catch(e) {
+    alert('Network error. Please try again.');
+  }
+};
+
+window.doPurchase30 = async function() {
+  if (!partner) { alert('Please log in first.'); return; }
+  var svc = (partner.services && partner.services[0]) || 'Removalists';
+  try {
+    var res = await fetch(API_URL + '/checkout', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        priceId: 'price_1TCBy1IyIz1h2UAohkM25s12',
+        partnerId: partner.id,
+        partnerEmail: partner.email || '',
+        serviceType: svc
+      })
+    });
+    var data = await res.json();
+    if (data.url) { closeTopup(); window.location.href = data.url; }
+    else alert(data.error || 'Error starting checkout. Please try again.');
+  } catch(e) {
+    alert('Network error. Please try again.');
   }
 };
 
 // ── QUOTE FORM ────────────────────────────────────────────────────────────────
 window.toggleSvc = function(el) {
-  const s = el.getAttribute('data-s');
+  var s = el.getAttribute('data-s');
   if (activeSvcs.includes(s)) {
-    if (activeSvcs.length > 1) activeSvcs = activeSvcs.filter(x => x !== s);
+    if (activeSvcs.length > 1) activeSvcs = activeSvcs.filter(function(x){return x !== s;});
   } else {
     activeSvcs.push(s);
   }
-  document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s'))));
+  document.querySelectorAll('.svc').forEach(function(b){b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s')));});
   document.getElementById('panel-clean').classList.toggle('visible', activeSvcs.includes('Bond Cleaning'));
   document.getElementById('panel-store').classList.toggle('visible', activeSvcs.includes('Storage'));
 };
 
 window.handleCityChange = function(sel) {
-  const wrap = document.getElementById('other-location-wrap');
+  var wrap = document.getElementById('other-location-wrap');
   wrap.style.display = sel.value === 'other' ? 'block' : 'none';
   if (sel.value === 'other') document.getElementById('other-suburb').focus();
 };
 
 window.submitQuote = async function() {
-  const cityVal = document.getElementById('sel-city').value;
+  var cityVal = document.getElementById('sel-city').value;
   if (!cityVal) { alert('Please select your city or town.'); return; }
-  const isOther = cityVal === 'other';
+  var isOther = cityVal === 'other';
   if (isOther && !document.getElementById('other-suburb').value.trim()) {
     alert('Please enter your suburb or town name.');
     document.getElementById('other-suburb').focus();
     return;
   }
-  const name = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
+  var name = document.getElementById('f-name').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and mobile number.'); return; }
-  const btn = document.querySelector('.qbtn');
+  var btn = document.querySelector('.qbtn');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
-  const city = isOther ? document.getElementById('other-suburb').value.trim() : cityVal;
+  var city = isOther ? document.getElementById('other-suburb').value.trim() : cityVal;
   try {
     await fetch(API_URL + '/leads', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
-        city,
+        city: city,
         services: activeSvcs.join(' + '),
         from_suburb: document.getElementById('f-from').value,
         to_suburb: document.getElementById('f-to').value,
         property_size: document.getElementById('f-size').value,
         move_date: document.getElementById('f-date').value,
-        name, phone,
-        clean_type: document.getElementById('f-clean-type')?.value || '',
-        storage_size: document.getElementById('f-storage-size')?.value || '',
+        name: name, phone: phone,
+        clean_type: document.getElementById('f-clean-type') ? document.getElementById('f-clean-type').value : '',
+        storage_size: document.getElementById('f-storage-size') ? document.getElementById('f-storage-size').value : '',
         other_location: isOther ? city : ''
       })
     });
-  } catch(err) {
-    console.error('Lead error:', err);
+  } catch(e) {
+    console.error('Lead error:', e);
   } finally {
     document.getElementById('city-confirm').textContent = city;
     document.getElementById('form-state').style.display = 'none';
     document.getElementById('success-state').style.display = 'block';
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt"></i> Get Instant Quotes — It\'s Free'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt"></i> Get Instant Quotes — It's Free'; }
   }
 };
 
@@ -953,13 +1069,13 @@ window.resetForm = function() {
   document.getElementById('other-location-wrap').style.display = 'none';
   document.getElementById('other-suburb').value = '';
   activeSvcs = ['Removals'];
-  document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', b.getAttribute('data-s') === 'Removals'));
+  document.querySelectorAll('.svc').forEach(function(b){b.classList.toggle('on', b.getAttribute('data-s') === 'Removals');});
   document.getElementById('panel-clean').classList.remove('visible');
   document.getElementById('panel-store').classList.remove('visible');
 };
 
 window.filterState = function(s, btn) {
-  document.querySelectorAll('.stab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.stab').forEach(function(t){t.classList.remove('on');});
   btn.classList.add('on');
   buildCities(s);
 };
@@ -967,12 +1083,12 @@ window.filterState = function(s, btn) {
 window.qs = function(city, svc) {
   showView('main');
   setTimeout(function() {
-    const sel = document.getElementById('sel-city');
-    for (let i = 0; i < sel.options.length; i++) {
+    var sel = document.getElementById('sel-city');
+    for (var i = 0; i < sel.options.length; i++) {
       if (sel.options[i].text === city || sel.options[i].value === city) { sel.selectedIndex = i; break; }
     }
     activeSvcs = [svc];
-    document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s'))));
+    document.querySelectorAll('.svc').forEach(function(b){b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s')));});
     document.getElementById('panel-clean').classList.toggle('visible', svc === 'Bond Cleaning');
     document.getElementById('panel-store').classList.toggle('visible', svc === 'Storage');
     document.getElementById('quote-card').scrollIntoView({behavior:'smooth',block:'center'});
@@ -980,49 +1096,42 @@ window.qs = function(city, svc) {
 };
 
 window.toggleFaq = function(el) { el.classList.toggle('open'); };
-window.openTopup = function() { document.getElementById('modal-topup').style.display = 'flex'; };
-window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
-
-window.doPurchase = async function(qty, price) {
-  if (!partner) { alert('Please log in first.'); return; }
-  alert('Stripe checkout coming soon! Contact hello@movemate.au to top up your credits.');
-  closeTopup();
-};
 
 // ── BUILD UI ──────────────────────────────────────────────────────────────────
 function buildCities(f) {
-  const list = f === 'ALL' ? CITIES : CITIES.filter(c => c.s === f);
-  const grid = document.getElementById('cities-grid');
-  grid.innerHTML = list.map((c, i) =>
-    `<div class="cc" id="cc${i}"><div><h4>${c.n}</h4><div class="cc-meta">${c.s} · ~${c.p}</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>`
-  ).join('');
-  list.forEach((c, i) => {
-    document.getElementById('cc' + i).addEventListener('click', () => qs(c.n + ', ' + c.s, 'Removals'));
+  var list = f === 'ALL' ? CITIES : CITIES.filter(function(c){return c.s === f;});
+  var grid = document.getElementById('cities-grid');
+  grid.innerHTML = list.map(function(c,i) {
+    return '<div class="cc" id="cc'+i+'"><div><h4>'+c.n+'</h4><div class="cc-meta">'+c.s+' · ~'+c.p+'</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>';
+  }).join('');
+  list.forEach(function(c,i) {
+    var el = document.getElementById('cc'+i);
+    if (el) el.addEventListener('click', function(){qs(c.n+', '+c.s,'Removals');});
   });
 }
 
 function buildBiz() {
-  const grid = document.getElementById('biz-grid');
-  grid.innerHTML = BUSINESSES.map((b, i) => {
-    const k = b.type === 'Removals' ? 'r' : b.type === 'Bond Cleaning' ? 'c' : 's';
-    const stars = '★'.repeat(Math.floor(b.stars));
-    return `<article class="bizcard" id="bz${i}">
-      <div class="biz-head"><div class="biz-av ba-${k}">${b.init}</div><span class="btype bt-${k}">${b.type}</span></div>
-      <h4 class="biz-name">${b.nm}</h4>
-      <div class="biz-loc"><i class="fas fa-map-marker-alt"></i>${b.city}</div>
-      <div class="biz-stars"><span style="color:#f59e0b">${stars}</span><span style="font-size:.75rem;color:var(--mid);margin-left:4px;">(${b.rev} reviews)</span></div>
-      <p class="biz-blurb">${b.bl}</p>
-      <button class="biz-btn" id="bzb${i}">Get a Quote →</button>
-    </article>`;
+  var grid = document.getElementById('biz-grid');
+  grid.innerHTML = BUSINESSES.map(function(b,i) {
+    var k = b.type === 'Removals' ? 'r' : b.type === 'Bond Cleaning' ? 'c' : 's';
+    var stars = '★'.repeat(Math.floor(b.stars));
+    return '<article class="bizcard" id="bz'+i+'">' +
+      '<div class="biz-head"><div class="biz-av ba-'+k+'">'+b.init+'</div><span class="btype bt-'+k+'">'+b.type+'</span></div>' +
+      '<h4 class="biz-name">'+b.nm+'</h4>' +
+      '<div class="biz-loc"><i class="fas fa-map-marker-alt"></i>'+b.city+'</div>' +
+      '<div class="biz-stars"><span style="color:#f59e0b">'+stars+'</span><span style="font-size:.75rem;color:var(--mid);margin-left:4px;">('+b.rev+' reviews)</span></div>' +
+      '<p class="biz-blurb">'+b.bl+'</p>' +
+      '<button class="biz-btn" id="bzb'+i+'">Get a Quote →</button>' +
+    '</article>';
   }).join('');
-  BUSINESSES.forEach((b, i) => {
-    const btn = document.getElementById('bzb' + i);
-    if (btn) btn.addEventListener('click', () => qs(b.city, b.type));
+  BUSINESSES.forEach(function(b,i) {
+    var btn = document.getElementById('bzb'+i);
+    if (btn) btn.addEventListener('click', function(){qs(b.city,b.type);});
   });
 }
 
 function buildSuburbLinks() {
-  const colMap = {
+  var colMap = {
     'Removalists Townsville':['Townsville, QLD','Removals'],
     'Removalists Mackay':['Mackay, QLD','Removals'],
     'Removalists Newcastle':['Newcastle, NSW','Removals'],
@@ -1032,21 +1141,22 @@ function buildSuburbLinks() {
     'Storage Townsville':['Townsville, QLD','Storage'],
     'Removalists Darwin':['Darwin, NT','Removals'],
   };
-  const allClicks = [];
-  document.getElementById('suburb-links').innerHTML = Object.entries(SUBURB_LINKS).map(([col, links]) => {
-    const target = colMap[col] || ['Townsville, QLD','Removals'];
-    links.forEach(() => allClicks.push({city:target[0],svc:target[1]}));
-    return `<div class="suburb-col"><h4>${col}</h4>${links.map(l => `<a class="suburb-link">${l}</a>`).join('')}</div>`;
+  var allClicks = [];
+  document.getElementById('suburb-links').innerHTML = Object.entries(SUBURB_LINKS).map(function(entry) {
+    var col = entry[0], links = entry[1];
+    var target = colMap[col] || ['Townsville, QLD','Removals'];
+    links.forEach(function(){allClicks.push({city:target[0],svc:target[1]});});
+    return '<div class="suburb-col"><h4>'+col+'</h4>'+links.map(function(l){'return <a class="suburb-link">'+l+'</a>';}).join('')+'</div>';
   }).join('');
-  document.querySelectorAll('.suburb-link').forEach((a, i) => {
-    if (allClicks[i]) a.addEventListener('click', () => qs(allClicks[i].city, allClicks[i].svc));
+  document.querySelectorAll('.suburb-link').forEach(function(a,i) {
+    if (allClicks[i]) a.addEventListener('click', function(){qs(allClicks[i].city,allClicks[i].svc);});
   });
 }
 
 function buildCityCBs() {
-  document.getElementById('ob-cities').innerHTML = CITIES.map(c =>
-    `<label class="city-cb"><input type="checkbox" name="ob-c" value="${c.n}, ${c.s}">${c.n} <span style="color:var(--mid);font-size:.68rem;">${c.s}</span></label>`
-  ).join('');
+  document.getElementById('ob-cities').innerHTML = CITIES.map(function(c) {
+    return '<label class="city-cb"><input type="checkbox" name="ob-c" value="'+c.n+', '+c.s+'">'+c.n+' <span style="color:var(--mid);font-size:.68rem;">'+c.s+'</span></label>';
+  }).join('');
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
