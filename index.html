@@ -721,7 +721,7 @@ function sid(id) {
 // ── PARTNER LOGIN ─────────────────────────────────────────────────────────────
 window.loginPartner = async function() {
   const phone = document.getElementById('login-phone').value.trim();
-  if (!phone) { alert('Please enter your mobile number.'); return; }
+  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
   const btn = document.getElementById('login-btn');
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Looking up...';
@@ -845,7 +845,7 @@ window.registerPartner = async function() {
   const phone = document.getElementById('ob-phone').value.trim();
   const email = document.getElementById('ob-email')?.value.trim() || '';
   if (!bname) { alert('Please enter your business name.'); return; }
-  if (!phone) { alert('Please enter your mobile number.'); return; }
+  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
   const svcs = [...document.querySelectorAll('[name="ob-s"]:checked')].map(e => e.value);
   const cities = [...document.querySelectorAll('[name="ob-c"]:checked')].map(e => e.value);
   const btn = document.querySelector('#view-onboard .ob-btn');
