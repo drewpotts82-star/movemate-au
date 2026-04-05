@@ -551,13 +551,13 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
   <div class="ob-wrap">
     <div class="ob-card">
       <h2>Partner Login</h2>
-      <p class="sub">Enter your mobile number to access your lead dashboard.</p>
+      <p class="sub">Enter your mobile number or email address to receive a login code.</p>
       <div class="fg">
         <label class="fl">Mobile Number</label>
-        <input class="form-inp na" id="login-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;" onkeydown="if(event.key==='Enter')loginPartner()">
+        <input class="form-inp na" id="login-phone" type="text" placeholder="04XX XXX XXX or your@email.com" style="width:100%;" onkeydown="if(event.key==='Enter')requestOTP()">
       </div>
-      <button class="ob-btn" id="login-btn" onclick="loginPartner()">
-        <i class="fas fa-sign-in-alt"></i> Access My Dashboard
+      <button class="ob-btn" id="login-btn" onclick="requestOTP()">
+        <i class="fas fa-paper-plane"></i> Send Login Code
       </button>
       <div class="login-alt">New partner? <span onclick="showView('onboard')">Register here →</span></div>
       <div class="back-link" onclick="showView('main')">— Back to main site</div>
@@ -631,9 +631,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="mhead"><h3>Top Up Lead Credits</h3><button class="mclose" onclick="closeTopup()"><i class="fas fa-times"></i></button></div>
     <div class="mbody">
       <div class="packgrid">
-        <div class="pack" onclick="doPurchase(15,150)"><div class="pack-name">Starter</div><div class="pack-leads">15 Leads</div><div class="pack-price">$150</div><div class="pack-note">$10/lead. Great for getting started.</div></div>
+        <div class="pack" onclick="doPurchaseSingle()"><div class="pack-name">Single Lead</div><div class="pack-leads" id="modal-single-price">$12</div><div class="pack-note" id="modal-single-note">Pay per lead. No commitment.</div></div>
         <div class="pack feat" onclick="doPurchase(30,275)"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save $25. Only $9.17 per lead.</div></div>
-        <div class="pack" onclick="doPurchase('unlimited',199)"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
+        
       </div>
       <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a></div>
     </div>
@@ -695,7 +695,7 @@ const SUBURB_LINKS = {
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 window.showView = function(v) {
-  ['main','login','onboard','dash'].forEach(x => {
+  ['main','login','otp','onboard','dash'].forEach(x => {
     const el = document.getElementById('view-' + x);
     if (el) el.style.display = v === x ? 'block' : 'none';
   });
@@ -719,6 +719,438 @@ function sid(id) {
 }
 
 // ── PARTNER LOGIN ─────────────────────────────────────────────────────────────
+
+// ── OTP AUTH ──────────────────────────────────────────────────────────────────
+let otpContact = '';
+
+window.requestOTP = async function() {
+  const contact = document.getElementById('login-phone').value.trim();
+  if (!contact) { alert('Please enter your mobile number or email.'); return; }
+  otpContact = contact;
+  const btn = document.getElementById('login-btn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
+  try {
+    const res = await fetch(API_URL + '/auth/request-otp', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('otp-hint').textContent = data.hint || 'Check your phone or email for the 6-digit code.';
+      showView('otp');
+    } else {
+      alert(data.error || 'Could not send code. Please check your details and try again.');
+    }
+  } catch(e) { alert('Network error. Please try again.'); }
+  finally { if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Login Code'; } }
+};
+
+window.resendOTP = async function() {
+  if (!otpContact) { showView('login'); return; }
+  document.getElementById('login-phone').value = otpContact;
+  showView('login');
+  await requestOTP();
+};
+
+window.verifyOTP = async function() {
+  const code = document.getElementById('otp-code').value.trim();
+  if (!code || code.length < 6) { alert('Please enter the 6-digit code.'); return; }
+  const btn = document.getElementById('otp-btn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...'; }
+  try {
+    const res = await fetch(API_URL + '/auth/verify-otp', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ contact: otpContact, code })
+    });
+    const data = await res.json();
+    if (data.success && data.partner) {
+      partner = data.partner;
+      credits = data.partner.credits || 0;
+      localStorage.setItem('mm_partner', JSON.stringify(partner));
+      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
+      document.getElementById('dash-bname').textContent = partner.business_name;
+      document.getElementById('dash-svcs').textContent = (partner.services || []).join(' · ');
+      document.getElementById('d-credits').textContent = credits;
+      document.getElementById('otp-code').value = '';
+      showView('dash');
+      if (typeof loadLeads === 'function') loadLeads();
+    } else {
+      alert(data.error || 'Invalid code. Please try again.');
+    }
+  } catch(e) { alert('Network error. Please try again.'); }
+  finally { if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify Code'; } }
+};
+
+// ── SINGLE LEAD PURCHASE ──────────────────────────────────────────────────────
+window.doPurchaseSingle = async function() {
+  if (!partner) { alert('Please log in first.'); return; }
+  const svc = (partner.services && partner.services[0]) || 'Removalists';
+  const s = svc.toLowerCase();
+  let priceId = 'price_1TEj6ZIyIz1h2UAowheoi5bM'; // removalist $12
+  if (s.includes('clean') || s.includes('bond')) priceId = 'price_1TIkfAIyIz1h2UAouHHGxsly'; // cleaner $8
+  else if (s.includes('storage')) priceId = 'price_1TIkfPIyIz1h2UAoS6kMR1jm'; // storage $12
+  try {
+    const res = await fetch(API_URL + '/checkout', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ priceId, partnerId: partner.id, partnerEmail: partner.email, serviceType: svc })
+    });
+    const data = await res.json();
+    if (data.url) { window.location.href = data.url; closeTopup(); }
+    else alert(data.error || 'Error starting checkout.');
+  } catch(e) { alert('Network error. Please try again.'); }
+};
+
+// ── UPDATE TOPUP MODAL WITH CORRECT PRICES ───────────────────────────────────
+const _origOpenTopup = window.openTopup;
+window.openTopup = function() {
+  const svc = (partner && partner.services && partner.services[0]) || 'Removalists';
+  const s = svc.toLowerCase();
+  const price = (s.includes('clean') || s.includes('bond')) ? 8 : 12;
+  const el = document.getElementById('modal-single-price');
+  const noteEl = document.getElementById('modal-single-note');
+  if (el) el.textContent = ' {
+  const phone = document.getElementById('login-phone').value.trim();
+  if (!phone) { alert('Please enter your mobile number.'); return; }
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Looking up...';
+  try {
+    const cleaned = phone.replace(/\s/g,'');
+    const formatted = cleaned.startsWith('0') ? '+61' + cleaned.slice(1) : cleaned;
+    const res = await fetch(API_URL + '/partners/login?phone=' + encodeURIComponent(formatted));
+    const data = await res.json();
+    if (data.partner) {
+      partner = data.partner;
+      credits = data.partner.credits || 0;
+      currentLeads = data.availableLeads || [];
+      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
+      document.getElementById('dash-bname').textContent = data.partner.business_name;
+      document.getElementById('dash-svcs').textContent =
+        (data.partner.services||[]).join(' · ') +
+        (data.partner.cities?.length ? ' · ' + data.partner.cities.slice(0,2).join(', ') : '');
+      document.getElementById('d-credits').textContent = credits;
+      document.getElementById('ds-avail').textContent = currentLeads.length;
+      document.getElementById('ds-unlocked').textContent = (data.unlockedLeads||[]).length;
+      document.getElementById('ds-value').textContent = currentLeads.length > 0 ? '$' + (currentLeads.length * 800) + '+' : '$0';
+      renderLeads(currentLeads);
+      showView('dash');
+    } else {
+      alert('No partner found with that number. Please register first.');
+    }
+  } catch(err) {
+    console.error('Login error:', err);
+    alert('Login failed. Please check your number and try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access My Dashboard';
+  }
+};
+
+// ── RENDER LEADS ──────────────────────────────────────────────────────────────
+function renderLeads(leads) {
+  const list = document.getElementById('leads-list');
+  document.getElementById('lead-badge').textContent = '(' + leads.length + ')';
+  if (!leads.length) {
+    list.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--mid);background:white;border-radius:12px;border:1.5px solid var(--border);"><i class="fas fa-bell" style="font-size:2rem;color:var(--border);display:block;margin-bottom:1rem;"></i>No leads in your area yet.<br>You\'ll get an SMS the moment one comes in!</div>';
+    return;
+  }
+  list.innerHTML = leads.map(l => {
+    const svc = l.services || 'Removals';
+    const k = svc.includes('Cleaning') && !svc.includes('Removals') ? 'c' : svc.includes('Storage') && !svc.includes('Removals') ? 's' : 'r';
+    const ico = k==='r' ? 'fa-truck-moving' : k==='c' ? 'fa-spray-can-sparkles' : 'fa-warehouse';
+    const ago = timeAgo(l.created_at);
+    return `<div class="lead-card">
+      <div class="lead-ico li-${k}"><i class="fas ${ico}"></i></div>
+      <div class="lead-info">
+        <div class="lead-svc">${svc}</div>
+        <div class="lead-route">${l.from_suburb||''}${l.to_suburb?' → '+l.to_suburb:''}</div>
+        <div class="lead-meta">
+          <span><i class="fas fa-map-marker-alt"></i>${l.city}</span>
+          <span><i class="fas fa-home"></i>${l.property_size||'Not specified'}</span>
+          ${l.move_date?`<span><i class="fas fa-calendar"></i>${l.move_date}</span>`:''}
+        </div>
+      </div>
+      <div class="lead-actions">
+        <div class="lead-time">${ago}</div>
+        <button class="unlock-btn" id="unlock-${l.id}" onclick="unlockLead('${l.id}')">
+          <i class="fas fa-lock-open"></i> Unlock · 1 credit
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function timeAgo(dateStr) {
+  if (!dateStr) return 'Just now';
+  const diff = Math.floor((Date.now() - new Date(dateStr)) / 60000);
+  if (diff < 1) return 'Just now';
+  if (diff < 60) return diff + 'm ago';
+  if (diff < 1440) return Math.floor(diff/60) + 'h ago';
+  return Math.floor(diff/1440) + 'd ago';
+}
+
+// ── UNLOCK LEAD ───────────────────────────────────────────────────────────────
+window.unlockLead = async function(leadId) {
+  if (!partner) { alert('Please log in first.'); return; }
+  if (credits <= 0 && partner.tier !== 'gold') {
+    if (confirm('No credits remaining. Top up now?')) openTopup();
+    return;
+  }
+  const btn = document.getElementById('unlock-' + leadId);
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Unlocking...'; }
+  try {
+    const res = await fetch(API_URL + '/partners/unlock', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({partnerId: partner.id, leadId})
+    });
+    const data = await res.json();
+    if (data.success) {
+      credits = data.creditsRemaining === 'unlimited' ? 9999 : data.creditsRemaining;
+      document.getElementById('d-credits').textContent = data.creditsRemaining === 'unlimited' ? '∞' : credits;
+      if (btn) {
+        btn.closest('.lead-actions').innerHTML = `
+          <div class="unlock-btn done"><i class="fas fa-check"></i> Unlocked</div>
+          <div class="contact-reveal">
+            <strong>${data.lead.customerName}</strong><br>
+            <a href="tel:${data.lead.customerPhone}" style="color:var(--sage);font-weight:700;font-size:.95rem;">
+              <i class="fas fa-phone"></i> ${data.lead.customerPhone}
+            </a>
+          </div>`;
+      }
+    } else {
+      alert(data.error || 'Could not unlock lead.');
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · 1 credit'; }
+    }
+  } catch(err) {
+    alert('Error unlocking lead. Please try again.');
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-lock-open"></i> Unlock · 1 credit'; }
+  }
+};
+
+// ── REGISTER PARTNER ──────────────────────────────────────────────────────────
+window.registerPartner = async function() {
+  const bname = document.getElementById('ob-bname').value.trim();
+  const phone = document.getElementById('ob-phone').value.trim();
+  const email = document.getElementById('ob-email')?.value.trim() || '';
+  if (!bname) { alert('Please enter your business name.'); return; }
+  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
+  const svcs = [...document.querySelectorAll('[name="ob-s"]:checked')].map(e => e.value);
+  const cities = [...document.querySelectorAll('[name="ob-c"]:checked')].map(e => e.value);
+  const btn = document.querySelector('#view-onboard .ob-btn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...'; }
+  try {
+    const res = await fetch(API_URL + '/partners/register', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        business_name: bname,
+        contact_name: document.getElementById('ob-name')?.value.trim() || '',
+        phone: phone || null, email: email || null, services: svcs, cities
+      })
+    });
+    const data = await res.json();
+    if (data.success || data.partnerId) {
+      partner = {business_name: bname, services: svcs, cities, id: data.partnerId, tier: 'starter'};
+      credits = data.credits || 2;
+      currentLeads = [];
+      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
+      document.getElementById('dash-bname').textContent = bname;
+      document.getElementById('dash-svcs').textContent = svcs.join(' · ') + (cities.length ? ' · ' + cities.slice(0,2).join(', ') : '');
+      document.getElementById('d-credits').textContent = credits;
+      document.getElementById('ds-avail').textContent = '0';
+      document.getElementById('ds-unlocked').textContent = '0';
+      document.getElementById('ds-value').textContent = '$0';
+      renderLeads([]);
+      showView('dash');
+    } else {
+      alert(data.error || 'Registration failed. Please try again.');
+    }
+  } catch(err) {
+    console.error('Registration error:', err);
+    alert('Registration failed. Please try again.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Claim My 2 Free Leads'; }
+  }
+};
+
+// ── QUOTE FORM ────────────────────────────────────────────────────────────────
+window.toggleSvc = function(el) {
+  const s = el.getAttribute('data-s');
+  if (activeSvcs.includes(s)) {
+    if (activeSvcs.length > 1) activeSvcs = activeSvcs.filter(x => x !== s);
+  } else {
+    activeSvcs.push(s);
+  }
+  document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s'))));
+  document.getElementById('panel-clean').classList.toggle('visible', activeSvcs.includes('Bond Cleaning'));
+  document.getElementById('panel-store').classList.toggle('visible', activeSvcs.includes('Storage'));
+};
+
+window.handleCityChange = function(sel) {
+  const wrap = document.getElementById('other-location-wrap');
+  wrap.style.display = sel.value === 'other' ? 'block' : 'none';
+  if (sel.value === 'other') document.getElementById('other-suburb').focus();
+};
+
+window.submitQuote = async function() {
+  const cityVal = document.getElementById('sel-city').value;
+  if (!cityVal) { alert('Please select your city or town.'); return; }
+  const isOther = cityVal === 'other';
+  if (isOther && !document.getElementById('other-suburb').value.trim()) {
+    alert('Please enter your suburb or town name.');
+    document.getElementById('other-suburb').focus();
+    return;
+  }
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and mobile number.'); return; }
+  const btn = document.querySelector('.qbtn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
+  const city = isOther ? document.getElementById('other-suburb').value.trim() : cityVal;
+  try {
+    await fetch(API_URL + '/leads', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        city,
+        services: activeSvcs.join(' + '),
+        from_suburb: document.getElementById('f-from').value,
+        to_suburb: document.getElementById('f-to').value,
+        property_size: document.getElementById('f-size').value,
+        move_date: document.getElementById('f-date').value,
+        name, phone,
+        clean_type: document.getElementById('f-clean-type')?.value || '',
+        storage_size: document.getElementById('f-storage-size')?.value || '',
+        other_location: isOther ? city : ''
+      })
+    });
+  } catch(err) {
+    console.error('Lead error:', err);
+  } finally {
+    document.getElementById('city-confirm').textContent = city;
+    document.getElementById('form-state').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt"></i> Get Instant Quotes — It\'s Free'; }
+  }
+};
+
+window.resetForm = function() {
+  document.getElementById('form-state').style.display = 'block';
+  document.getElementById('success-state').style.display = 'none';
+  document.getElementById('sel-city').value = '';
+  document.getElementById('other-location-wrap').style.display = 'none';
+  document.getElementById('other-suburb').value = '';
+  activeSvcs = ['Removals'];
+  document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', b.getAttribute('data-s') === 'Removals'));
+  document.getElementById('panel-clean').classList.remove('visible');
+  document.getElementById('panel-store').classList.remove('visible');
+};
+
+window.filterState = function(s, btn) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  buildCities(s);
+};
+
+window.qs = function(city, svc) {
+  showView('main');
+  setTimeout(function() {
+    const sel = document.getElementById('sel-city');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === city || sel.options[i].value === city) { sel.selectedIndex = i; break; }
+    }
+    activeSvcs = [svc];
+    document.querySelectorAll('.svc').forEach(b => b.classList.toggle('on', activeSvcs.includes(b.getAttribute('data-s'))));
+    document.getElementById('panel-clean').classList.toggle('visible', svc === 'Bond Cleaning');
+    document.getElementById('panel-store').classList.toggle('visible', svc === 'Storage');
+    document.getElementById('quote-card').scrollIntoView({behavior:'smooth',block:'center'});
+  }, 80);
+};
+
+window.toggleFaq = function(el) { el.classList.toggle('open'); };
+window.openTopup = function() { document.getElementById('modal-topup').style.display = 'flex'; };
+window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
+
+window.doPurchase = async function(qty, price) {
+  if (!partner) { alert('Please log in first.'); return; }
+  alert('Stripe checkout coming soon! Contact hello@movemate.au to top up your credits.');
+  closeTopup();
+};
+
+// ── BUILD UI ──────────────────────────────────────────────────────────────────
+function buildCities(f) {
+  const list = f === 'ALL' ? CITIES : CITIES.filter(c => c.s === f);
+  const grid = document.getElementById('cities-grid');
+  grid.innerHTML = list.map((c, i) =>
+    `<div class="cc" id="cc${i}"><div><h4>${c.n}</h4><div class="cc-meta">${c.s} · ~${c.p}</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>`
+  ).join('');
+  list.forEach((c, i) => {
+    document.getElementById('cc' + i).addEventListener('click', () => qs(c.n + ', ' + c.s, 'Removals'));
+  });
+}
+
+function buildBiz() {
+  const grid = document.getElementById('biz-grid');
+  grid.innerHTML = BUSINESSES.map((b, i) => {
+    const k = b.type === 'Removals' ? 'r' : b.type === 'Bond Cleaning' ? 'c' : 's';
+    const stars = '★'.repeat(Math.floor(b.stars));
+    return `<article class="bizcard" id="bz${i}">
+      <div class="biz-head"><div class="biz-av ba-${k}">${b.init}</div><span class="btype bt-${k}">${b.type}</span></div>
+      <h4 class="biz-name">${b.nm}</h4>
+      <div class="biz-loc"><i class="fas fa-map-marker-alt"></i>${b.city}</div>
+      <div class="biz-stars"><span style="color:#f59e0b">${stars}</span><span style="font-size:.75rem;color:var(--mid);margin-left:4px;">(${b.rev} reviews)</span></div>
+      <p class="biz-blurb">${b.bl}</p>
+      <button class="biz-btn" id="bzb${i}">Get a Quote →</button>
+    </article>`;
+  }).join('');
+  BUSINESSES.forEach((b, i) => {
+    const btn = document.getElementById('bzb' + i);
+    if (btn) btn.addEventListener('click', () => qs(b.city, b.type));
+  });
+}
+
+function buildSuburbLinks() {
+  const colMap = {
+    'Removalists Townsville':['Townsville, QLD','Removals'],
+    'Removalists Mackay':['Mackay, QLD','Removals'],
+    'Removalists Newcastle':['Newcastle, NSW','Removals'],
+    'Bond Cleaning Townsville':['Townsville, QLD','Bond Cleaning'],
+    'Bond Cleaning Geelong':['Geelong, VIC','Bond Cleaning'],
+    'Removalists Geelong':['Geelong, VIC','Removals'],
+    'Storage Townsville':['Townsville, QLD','Storage'],
+    'Removalists Darwin':['Darwin, NT','Removals'],
+  };
+  const allClicks = [];
+  document.getElementById('suburb-links').innerHTML = Object.entries(SUBURB_LINKS).map(([col, links]) => {
+    const target = colMap[col] || ['Townsville, QLD','Removals'];
+    links.forEach(() => allClicks.push({city:target[0],svc:target[1]}));
+    return `<div class="suburb-col"><h4>${col}</h4>${links.map(l => `<a class="suburb-link">${l}</a>`).join('')}</div>`;
+  }).join('');
+  document.querySelectorAll('.suburb-link').forEach((a, i) => {
+    if (allClicks[i]) a.addEventListener('click', () => qs(allClicks[i].city, allClicks[i].svc));
+  });
+}
+
+function buildCityCBs() {
+  document.getElementById('ob-cities').innerHTML = CITIES.map(c =>
+    `<label class="city-cb"><input type="checkbox" name="ob-c" value="${c.n}, ${c.s}">${c.n} <span style="color:var(--mid);font-size:.68rem;">${c.s}</span></label>`
+  ).join('');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildCities('ALL');
+buildBiz();
+buildSuburbLinks();
+showView('main');
+</script>
+</body>
+</html>
+ + price;
+  if (noteEl) noteEl.textContent = 'Pay per ' + svc.toLowerCase() + ' lead. No commitment.';
+  document.getElementById('modal-topup').style.display = 'flex';
+};
+
 window.loginPartner = async function() {
   const phone = document.getElementById('login-phone').value.trim();
   if (!phone) { alert('Please enter your mobile number.'); return; }
@@ -845,7 +1277,7 @@ window.registerPartner = async function() {
   const phone = document.getElementById('ob-phone').value.trim();
   const email = document.getElementById('ob-email')?.value.trim() || '';
   if (!bname) { alert('Please enter your business name.'); return; }
-  if (!phone) { alert('Please enter your mobile number.'); return; }
+  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
   const svcs = [...document.querySelectorAll('[name="ob-s"]:checked')].map(e => e.value);
   const cities = [...document.querySelectorAll('[name="ob-c"]:checked')].map(e => e.value);
   const btn = document.querySelector('#view-onboard .ob-btn');
@@ -857,7 +1289,7 @@ window.registerPartner = async function() {
       body: JSON.stringify({
         business_name: bname,
         contact_name: document.getElementById('ob-name')?.value.trim() || '',
-        phone, email, services: svcs, cities
+        phone: phone || null, email: email || null, services: svcs, cities
       })
     });
     const data = await res.json();
