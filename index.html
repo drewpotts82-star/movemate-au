@@ -632,8 +632,8 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="mbody">
       <div class="packgrid">
         
-        <div class="pack feat" onclick="doPurchase(30,275)"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save $25. Only $9.17 per lead.</div></div>
-        <div class="pack" onclick="doPurchase('unlimited',199)"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
+        <div class="pack" onclick="doPurchaseSingle()"><div class="pack-name">Single Lead</div><div class="pack-leads" id="modal-single-price">$12</div><div class="pack-note">Pay per lead. No commitment.</div></div><div class="pack feat" onclick="doPurchase30()"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value Pack</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save on every lead.</div></div>
+        
       </div>
       <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a></div>
     </div>
@@ -980,6 +980,39 @@ window.qs = function(city, svc) {
 };
 
 window.toggleFaq = function(el) { el.classList.toggle('open'); };
+
+window.doPurchaseSingle = async function() {
+  if (!partner) { alert('Please log in first.'); return; }
+  var svc = (partner.services && partner.services[0]) || 'Removalists';
+  var s = svc.toLowerCase();
+  var priceId = 'price_1TEj6ZIyIz1h2UAowheoi5bM';
+  if (s.indexOf('clean') > -1 || s.indexOf('bond') > -1) priceId = 'price_1TIkfAIyIz1h2UAouHHGxsly';
+  else if (s.indexOf('storage') > -1) priceId = 'price_1TIkfPIyIz1h2UAoS6kMR1jm';
+  try {
+    var res = await fetch(API_URL + '/checkout', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ priceId: priceId, partnerId: partner.id, partnerEmail: partner.email || '', serviceType: svc })
+    });
+    var data = await res.json();
+    if (data.url) { closeTopup(); window.location.href = data.url; }
+    else alert(data.error || 'Error starting checkout.');
+  } catch(e) { alert('Network error. Please try again.'); }
+};
+
+window.doPurchase30 = async function() {
+  if (!partner) { alert('Please log in first.'); return; }
+  var svc = (partner.services && partner.services[0]) || 'Removalists';
+  try {
+    var res = await fetch(API_URL + '/checkout', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ priceId: 'price_1TCBy1IyIz1h2UAohkM25s12', partnerId: partner.id, partnerEmail: partner.email || '', serviceType: svc })
+    });
+    var data = await res.json();
+    if (data.url) { closeTopup(); window.location.href = data.url; }
+    else alert(data.error || 'Error starting checkout.');
+  } catch(e) { alert('Network error. Please try again.'); }
+};
+
 window.openTopup = function() { document.getElementById('modal-topup').style.display = 'flex'; };
 window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
 
