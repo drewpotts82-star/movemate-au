@@ -1084,11 +1084,7 @@ window.openTopup = function() {
   if (el) el.textContent = '
 window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
 
-window.doPurchase = async function(qty, price) {
-  if (!partner) { alert('Please log in first.'); return; }
-  alert('Stripe checkout coming soon! Contact hello@movemate.au to top up your credits.');
-  closeTopup();
-};
+// doPurchase defined above
 
 // ── BUILD UI ──────────────────────────────────────────────────────────────────
 function buildCities(f) {
