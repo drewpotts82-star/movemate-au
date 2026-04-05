@@ -574,7 +574,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="free-badge"><i class="fas fa-gift"></i><span><strong>2 free leads</strong> when you complete onboarding — no card needed.</span></div>
       <div class="fg"><label class="fl">Business Name</label><input class="form-inp na" id="ob-bname" placeholder="e.g. Mackay City Removals" style="width:100%;"></div>
       <div class="fg"><label class="fl">Your Name</label><input class="form-inp na" id="ob-name" placeholder="First &amp; last name" style="width:100%;"></div>
-      <div class="fg"><label class="fl">Mobile Number <span style="font-weight:400;opacity:0.6;">(optional)</span></label><input class="form-inp na" id="ob-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;"></div>
+      <div class="fg"><label class="fl">Mobile Number</label><input class="form-inp na" id="ob-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;"></div>
       <div class="fg"><label class="fl">Email Address</label><input class="form-inp na" id="ob-email" type="email" placeholder="your@email.com" style="width:100%;"></div>
       <div class="fg">
         <label class="fl">Services Offered</label>
@@ -695,7 +695,7 @@ const SUBURB_LINKS = {
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 window.showView = function(v) {
-  ['main','login','otp','onboard','dash'].forEach(x => {
+  ['main','login','onboard','dash'].forEach(x => {
     const el = document.getElementById('view-' + x);
     if (el) el.style.display = v === x ? 'block' : 'none';
   });
@@ -719,77 +719,9 @@ function sid(id) {
 }
 
 // ── PARTNER LOGIN ─────────────────────────────────────────────────────────────
-
-// ── OTP LOGIN ─────────────────────────────────────────────────────────────────
-let otpContact = '';
-
-window.requestOTP = async function(resend = false) {
-  const contact = resend ? otpContact : document.getElementById('login-contact').value.trim();
-  if (!contact) { alert('Please enter your mobile number or email.'); return; }
-  otpContact = contact;
-
-  const btn = document.getElementById('login-btn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
-
-  try {
-    const res = await fetch(API_URL + '/auth/request-otp', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ contact })
-    });
-    const data = await res.json();
-    if (data.success) {
-      document.getElementById('otp-hint').textContent = data.hint || 'Check your phone or email for the code.';
-      showView('otp');
-      if (resend) alert('New code sent!');
-    } else {
-      alert(data.error || 'Could not send code. Please try again.');
-    }
-  } catch(err) {
-    alert('Network error. Please try again.');
-  } finally {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Login Code'; }
-  }
-};
-
-window.verifyOTP = async function() {
-  const code = document.getElementById('otp-code').value.trim();
-  if (!code || code.length !== 6) { alert('Please enter the 6-digit code.'); return; }
-
-  const btn = document.getElementById('otp-btn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...'; }
-
-  try {
-    const res = await fetch(API_URL + '/auth/verify-otp', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ contact: otpContact, code })
-    });
-    const data = await res.json();
-    if (data.success && data.partner) {
-      partner = data.partner;
-      credits = data.partner.credits || 0;
-      localStorage.setItem('mm_partner', JSON.stringify(partner));
-      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
-      document.getElementById('dash-bname').textContent = partner.business_name;
-      document.getElementById('dash-svcs').textContent = (partner.services || []).join(' · ');
-      document.getElementById('d-credits').textContent = credits;
-      document.getElementById('otp-code').value = '';
-      showView('dash');
-      loadLeads();
-    } else {
-      alert(data.error || 'Invalid code. Please try again.');
-    }
-  } catch(err) {
-    alert('Network error. Please try again.');
-  } finally {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify Code'; }
-  }
-};
-
 window.loginPartner = async function() {
   const phone = document.getElementById('login-phone').value.trim();
-  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
+  if (!phone) { alert('Please enter your mobile number.'); return; }
   const btn = document.getElementById('login-btn');
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Looking up...';
@@ -925,10 +857,7 @@ window.registerPartner = async function() {
       body: JSON.stringify({
         business_name: bname,
         contact_name: document.getElementById('ob-name')?.value.trim() || '',
-        phone: phone || null,
-        email: email || null,
-        services: svcs,
-        cities
+        phone, email, services: svcs, cities
       })
     });
     const data = await res.json();
