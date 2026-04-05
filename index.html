@@ -553,7 +553,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <h2>Partner Login</h2>
       <p class="sub">Enter your mobile number to access your lead dashboard.</p>
       <div class="fg">
-        <label class="fl">Mobile Number <span style="font-weight:400;opacity:0.6;font-size:0.85rem;">(optional if email provided)</span></label>
+        <label class="fl">Mobile Number</label>
         <input class="form-inp na" id="login-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;" onkeydown="if(event.key==='Enter')loginPartner()">
       </div>
       <button class="ob-btn" id="login-btn" onclick="loginPartner()">
@@ -575,7 +575,7 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
       <div class="fg"><label class="fl">Business Name</label><input class="form-inp na" id="ob-bname" placeholder="e.g. Mackay City Removals" style="width:100%;"></div>
       <div class="fg"><label class="fl">Your Name</label><input class="form-inp na" id="ob-name" placeholder="First &amp; last name" style="width:100%;"></div>
       <div class="fg"><label class="fl">Mobile Number <span style="font-weight:400;opacity:0.6;">(optional)</span></label><input class="form-inp na" id="ob-phone" type="tel" placeholder="04XX XXX XXX" style="width:100%;"></div>
-      <div class="fg"><label class="fl">Email Address <span style="font-weight:400;opacity:0.6;font-size:0.85rem;">(optional if mobile provided)</span></label><input class="form-inp na" id="ob-email" type="email" placeholder="your@email.com" style="width:100%;"></div>
+      <div class="fg"><label class="fl">Email Address</label><input class="form-inp na" id="ob-email" type="email" placeholder="your@email.com" style="width:100%;"></div>
       <div class="fg">
         <label class="fl">Services Offered</label>
         <div class="svc-checks">
@@ -631,18 +631,9 @@ footer{background:var(--navy);padding:3.5rem 2rem 1.75rem}
     <div class="mhead"><h3>Top Up Lead Credits</h3><button class="mclose" onclick="closeTopup()"><i class="fas fa-times"></i></button></div>
     <div class="mbody">
       <div class="packgrid">
-        <div class="pack feat" onclick="doPurchase('single', getSingleLeadPrice())">
-          <div class="pack-name">Single Lead</div>
-          <div class="pack-leads" id="modal-single-price" style="font-size:2rem;">$12</div>
-          <div class="pack-note" id="modal-single-note">Pay per lead. No commitment.</div>
-        </div>
-        <div class="pack" onclick="doPurchase(30, 275)">
-          <div class="pack-top-badge">Best Value</div>
-          <div class="pack-name">Value Pack</div>
-          <div class="pack-leads">30 Leads</div>
-          <div class="pack-price">$275</div>
-          <div class="pack-note" id="modal-pack-note">Save on every lead.</div>
-        </div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
+        <div class="pack" onclick="doPurchase(15,150)"><div class="pack-name">Starter</div><div class="pack-leads">15 Leads</div><div class="pack-price">$150</div><div class="pack-note">$10/lead. Great for getting started.</div></div>
+        <div class="pack feat" onclick="doPurchase(30,275)"><div class="pack-top-badge">Best Value</div><div class="pack-name">Value</div><div class="pack-leads">30 Leads</div><div class="pack-price">$275</div><div class="pack-note">Save $25. Only $9.17 per lead.</div></div>
+        <div class="pack" onclick="doPurchase('unlimited',199)"><div class="pack-name">Gold</div><div class="pack-leads">Unlimited</div><div class="pack-price">$199<span style="font-size:.7rem;font-weight:500;">/mo</span></div><div class="pack-note">All leads in your cities. Priority placement.</div></div>
       </div>
       <div class="mpay-note"><i class="fas fa-lock"></i> Secure payment via Stripe. GST included. Questions: <a href="mailto:hello@movemate.au" style="color:var(--blue);">hello@movemate.au</a></div>
     </div>
@@ -922,7 +913,7 @@ window.registerPartner = async function() {
   const phone = document.getElementById('ob-phone').value.trim();
   const email = document.getElementById('ob-email')?.value.trim() || '';
   if (!bname) { alert('Please enter your business name.'); return; }
-  if (!phone && !email) { alert('Please enter your mobile number or email address — at least one is required.'); return; }
+  if (!phone) { alert('Please enter your mobile number.'); return; }
   const svcs = [...document.querySelectorAll('[name="ob-s"]:checked')].map(e => e.value);
   const cities = [...document.querySelectorAll('[name="ob-c"]:checked')].map(e => e.value);
   const btn = document.querySelector('#view-onboard .ob-btn');
@@ -1060,116 +1051,7 @@ window.qs = function(city, svc) {
 };
 
 window.toggleFaq = function(el) { el.classList.toggle('open'); };
-window.openTopup = function() {
-  // Set single lead price based on business type
-  const svc = (partner && partner.services && partner.services[0]) || 'Removalists';
-  const svcLower = svc.toLowerCase();
-  let price = 12;
-  let note = 'Pay per lead. No commitment.';
-  let packNote = 'Save on every lead.';
-  if (svcLower.includes('clean') || svcLower.includes('bond')) {
-    price = 8;
-    note = 'Pay per cleaner lead. No commitment.';
-    packNote = 'Only $9.17 per cleaner lead.';
-  } else if (svcLower.includes('storage')) {
-    price = 12;
-    note = 'Pay per storage lead. No commitment.';
-    packNote = 'Save on every storage lead.';
-  } else {
-    packNote = 'Only $9.17 per removalist lead.';
-  }
-  const el = document.getElementById('modal-single-price');
-  const noteEl = document.getElementById('modal-single-note');
-  const packNoteEl = document.getElementById('modal-pack-note');
-  if (el) el.textContent = '
-window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
-
-window.doPurchase = async function(qty, price) {
-  if (!partner) { alert('Please log in first.'); return; }
-  alert('Stripe checkout coming soon! Contact hello@movemate.au to top up your credits.');
-  closeTopup();
-};
-
-// ── BUILD UI ──────────────────────────────────────────────────────────────────
-function buildCities(f) {
-  const list = f === 'ALL' ? CITIES : CITIES.filter(c => c.s === f);
-  const grid = document.getElementById('cities-grid');
-  grid.innerHTML = list.map((c, i) =>
-    `<div class="cc" id="cc${i}"><div><h4>${c.n}</h4><div class="cc-meta">${c.s} · ~${c.p}</div><div class="cc-badges"><span class="cbadge cb-r">Removals</span><span class="cbadge cb-c">Cleaning</span><span class="cbadge cb-s">Storage</span></div></div><i class="fas fa-arrow-right cc-arr"></i></div>`
-  ).join('');
-  list.forEach((c, i) => {
-    document.getElementById('cc' + i).addEventListener('click', () => qs(c.n + ', ' + c.s, 'Removals'));
-  });
-}
-
-function buildBiz() {
-  const grid = document.getElementById('biz-grid');
-  grid.innerHTML = BUSINESSES.map((b, i) => {
-    const k = b.type === 'Removals' ? 'r' : b.type === 'Bond Cleaning' ? 'c' : 's';
-    const stars = '★'.repeat(Math.floor(b.stars));
-    return `<article class="bizcard" id="bz${i}">
-      <div class="biz-head"><div class="biz-av ba-${k}">${b.init}</div><span class="btype bt-${k}">${b.type}</span></div>
-      <h4 class="biz-name">${b.nm}</h4>
-      <div class="biz-loc"><i class="fas fa-map-marker-alt"></i>${b.city}</div>
-      <div class="biz-stars"><span style="color:#f59e0b">${stars}</span><span style="font-size:.75rem;color:var(--mid);margin-left:4px;">(${b.rev} reviews)</span></div>
-      <p class="biz-blurb">${b.bl}</p>
-      <button class="biz-btn" id="bzb${i}">Get a Quote →</button>
-    </article>`;
-  }).join('');
-  BUSINESSES.forEach((b, i) => {
-    const btn = document.getElementById('bzb' + i);
-    if (btn) btn.addEventListener('click', () => qs(b.city, b.type));
-  });
-}
-
-function buildSuburbLinks() {
-  const colMap = {
-    'Removalists Townsville':['Townsville, QLD','Removals'],
-    'Removalists Mackay':['Mackay, QLD','Removals'],
-    'Removalists Newcastle':['Newcastle, NSW','Removals'],
-    'Bond Cleaning Townsville':['Townsville, QLD','Bond Cleaning'],
-    'Bond Cleaning Geelong':['Geelong, VIC','Bond Cleaning'],
-    'Removalists Geelong':['Geelong, VIC','Removals'],
-    'Storage Townsville':['Townsville, QLD','Storage'],
-    'Removalists Darwin':['Darwin, NT','Removals'],
-  };
-  const allClicks = [];
-  document.getElementById('suburb-links').innerHTML = Object.entries(SUBURB_LINKS).map(([col, links]) => {
-    const target = colMap[col] || ['Townsville, QLD','Removals'];
-    links.forEach(() => allClicks.push({city:target[0],svc:target[1]}));
-    return `<div class="suburb-col"><h4>${col}</h4>${links.map(l => `<a class="suburb-link">${l}</a>`).join('')}</div>`;
-  }).join('');
-  document.querySelectorAll('.suburb-link').forEach((a, i) => {
-    if (allClicks[i]) a.addEventListener('click', () => qs(allClicks[i].city, allClicks[i].svc));
-  });
-}
-
-function buildCityCBs() {
-  document.getElementById('ob-cities').innerHTML = CITIES.map(c =>
-    `<label class="city-cb"><input type="checkbox" name="ob-c" value="${c.n}, ${c.s}">${c.n} <span style="color:var(--mid);font-size:.68rem;">${c.s}</span></label>`
-  ).join('');
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-buildCities('ALL');
-buildBiz();
-buildSuburbLinks();
-showView('main');
-</script>
-</body>
-</html>
- + price;
-  if (noteEl) noteEl.textContent = note;
-  if (packNoteEl) packNoteEl.textContent = packNote;
-  document.getElementById('modal-topup').style.display = 'flex';
-};
-
-window.getSingleLeadPrice = function() {
-  const svc = (partner && partner.services && partner.services[0]) || 'Removalists';
-  const s = svc.toLowerCase();
-  if (s.includes('clean') || s.includes('bond')) return 8;
-  return 12;
-};
+window.openTopup = function() { document.getElementById('modal-topup').style.display = 'flex'; };
 window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
 
 window.doPurchase = async function(qty, price) {
