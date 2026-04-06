@@ -783,43 +783,7 @@ window.verifyOTP = async function() {
   finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify and Log In'; }
 };
 
-window.loginPartner = async function() {
-  const phone = document.getElementById('login-phone').value.trim();
-  if (!phone && !email) { alert('Please enter your mobile number or email address.'); return; }
-  const btn = document.getElementById('login-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Looking up...';
-  try {
-    const cleaned = phone.replace(/\s/g,'');
-    const formatted = cleaned.startsWith('0') ? '+61' + cleaned.slice(1) : cleaned;
-    const res = await fetch(API_URL + '/partners/login?phone=' + encodeURIComponent(formatted));
-    const data = await res.json();
-    if (data.partner) {
-      partner = data.partner;
-      credits = data.partner.credits || 0;
-      currentLeads = data.availableLeads || [];
-      document.getElementById('nav-partner-btn').textContent = 'My Dashboard';
-      document.getElementById('dash-bname').textContent = data.partner.business_name;
-      document.getElementById('dash-svcs').textContent =
-        (data.partner.services||[]).join(' · ') +
-        (data.partner.cities?.length ? ' · ' + data.partner.cities.slice(0,2).join(', ') : '');
-      document.getElementById('d-credits').textContent = credits;
-      document.getElementById('ds-avail').textContent = currentLeads.length;
-      document.getElementById('ds-unlocked').textContent = (data.unlockedLeads||[]).length;
-      document.getElementById('ds-value').textContent = currentLeads.length > 0 ? '$' + (currentLeads.length * 800) + '+' : '$0';
-      renderLeads(currentLeads);
-      showView('dash');
-    } else {
-      alert('No partner found with that number. Please register first.');
-    }
-  } catch(err) {
-    console.error('Login error:', err);
-    alert('Login failed. Please check your number and try again.');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access My Dashboard';
-  }
-};
+// loginPartner removed - using OTP flow instead
 
 // ── RENDER LEADS ──────────────────────────────────────────────────────────────
 function renderLeads(leads) {
