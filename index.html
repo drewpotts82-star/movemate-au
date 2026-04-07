@@ -1041,7 +1041,16 @@ window.doPurchase30 = async function() {
   } catch(e) { alert('Network error. Please try again.'); }
 };
 
-window.openTopup = function() { document.getElementById('modal-topup').style.display = 'flex'; };
+window.openTopup = function() {
+  var svc = (partner && partner.services && partner.services[0]) || 'Removalists';
+  var s = svc.toLowerCase();
+  var price = (s.indexOf('clean') > -1 || s.indexOf('bond') > -1) ? 8 : 12;
+  var el = document.getElementById('modal-single-price');
+  var noteEl = document.getElementById('modal-single-note');
+  if (el) el.textContent = '$' + price;
+  if (noteEl) noteEl.textContent = 'Pay per ' + (price === 8 ? 'cleaner' : 'removalist') + ' lead. No commitment.';
+  document.getElementById('modal-topup').style.display = 'flex';
+};
 window.closeTopup = function() { document.getElementById('modal-topup').style.display = 'none'; };
 
 window.doPurchase = async function(qty, price) {
